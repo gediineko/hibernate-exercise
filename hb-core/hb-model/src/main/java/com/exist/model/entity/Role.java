@@ -12,9 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import java.util.List;
 
-/**
- * Created by NazIsEvil on 06/08/2016.
- */
+
 @Entity
 @Cacheable
 @Cache(usage = CacheConcurrencyStrategy.READ_ONLY)

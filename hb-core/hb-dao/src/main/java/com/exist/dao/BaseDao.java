@@ -6,9 +6,7 @@ import com.exist.model.ref.ResultOrder;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * Created by NazIsEvil on 06/08/2016.
- */
+
 public interface BaseDao<E extends BaseEntity, ID extends Serializable> {
 
     E findOne(ID id);

@@ -16,9 +16,7 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
 
-/**
- * Created by NazIsEvil on 06/08/2016.
- */
+
 public class BaseDaoImpl<E extends BaseEntity, ID extends Serializable> implements BaseDao<E, ID> {
     private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
     protected Class<? extends E> clazz;

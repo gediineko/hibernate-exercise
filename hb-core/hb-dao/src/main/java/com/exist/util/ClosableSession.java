@@ -2,9 +2,7 @@ package com.exist.util;
 
 import org.hibernate.Session;
 
-/**
- * Created by NazIsEvil on 06/08/2016.
- */
+
 public class ClosableSession implements AutoCloseable {
 
     private Session session;
