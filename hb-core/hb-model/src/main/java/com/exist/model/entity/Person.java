@@ -1,0 +1,124 @@
+package com.exist.model.entity;
+
+import com.exist.model.base.BaseEntity;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.hibernate.annotations.*;
+import org.hibernate.annotations.Cache;
+
+import javax.persistence.*;
+import javax.persistence.Entity;
+import java.util.Date;
+import java.util.List;
+import java.util.Set;
+
+
+@Entity
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
+public class Person extends BaseEntity {
+
+    private static final long serialVersionUID = -3138466364444175632L;
+
+    @Embedded
+    private Name name;
+
+    @Embedded
+    private Address address;
+
+    @Column
+    private Date birthDate;
+
+    @Column
+    private Double gwa;
+
+    @Column
+    private Date dateHired;
+
+    @Column
+    private Boolean currentlyEmployed;
+
+    @OneToMany(mappedBy = "person")
+    private List<Contact> contactInfo;
+
+    @ManyToMany
+    @JoinTable(name = "PERSON_ROLE",
+            joinColumns = @JoinColumn(name = "PERSON_ID"),
+            inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
+    private Set<Role> roles;
+
+    public Name getName() {
+        return name;
+    }
+
+    public void setName(Name name) {
+        this.name = name;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public Double getGwa() {
+        return gwa;
+    }
+
+    public void setGwa(Double gwa) {
+        this.gwa = gwa;
+    }
+
+    public Date getDateHired() {
+        return dateHired;
+    }
+
+    public void setDateHired(Date dateHired) {
+        this.dateHired = dateHired;
+    }
+
+    public Boolean getCurrentlyEmployed() {
+        return currentlyEmployed;
+    }
+
+    public void setCurrentlyEmployed(Boolean currentlyEmployed) {
+        this.currentlyEmployed = currentlyEmployed;
+    }
+
+    public List<Contact> getContactInfo() {
+        return contactInfo;
+    }
+
+    public void setContactInfo(List<Contact> contactInfo) {
+        this.contactInfo = contactInfo;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("name", name)
+                .append("address", address)
+                .append("birthDate", birthDate)
+                .append("gwa", gwa)
+                .append("dateHired", dateHired)
+                .append("currentlyEmployed", currentlyEmployed)
+                .toString();
+    }
+}
