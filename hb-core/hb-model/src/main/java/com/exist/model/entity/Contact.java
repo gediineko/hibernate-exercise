@@ -1,11 +1,10 @@
 package com.exist.model.entity;
 
 import com.exist.model.base.BaseEntity;
-import org.hibernate.annotations.*;
 import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.persistence.Entity;
 
 
 @Entity
@@ -27,6 +26,14 @@ public class Contact extends BaseEntity {
 
     @Column
     private String email;
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
 
     public String getLandLine() {
         return landLine;

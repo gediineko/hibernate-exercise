@@ -1,26 +1,20 @@
-package com.exist.model.entity;
+package com.exist.dto;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import java.io.Serializable;
-
-
-@Embeddable
-public class Address implements Serializable {
-
-    private static final long serialVersionUID = 8225560922213682364L;
-
-    @Column
+public class AddressDto {
     private String streetNumber;
-
-    @Column
     private String barangay;
-
-    @Column
     private String city;
-
-    @Column
     private String zipCode;
+
+    public AddressDto() {
+    }
+
+    public AddressDto(String streetNumber, String barangay, String city, String zipCode) {
+        this.streetNumber = streetNumber;
+        this.barangay = barangay;
+        this.city = city;
+        this.zipCode = zipCode;
+    }
 
     public String getStreetNumber() {
         return streetNumber;
@@ -53,6 +47,4 @@ public class Address implements Serializable {
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
-
-
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>hb-infra</artifactId>
@@ -20,7 +20,8 @@
         <jdbc.password>postgres</jdbc.password>
         <hibernate.dialect>org.hibernate.dialect.PostgreSQL9Dialect</hibernate.dialect>
         <hibernate.show_sql>true</hibernate.show_sql>
-        <hibernate.cache.region.factory_class>org.hibernate.cache.ehcache.EhCacheRegionFactory</hibernate.cache.region.factory_class>
+        <hibernate.cache.region.factory_class>org.hibernate.cache.ehcache.EhCacheRegionFactory
+        </hibernate.cache.region.factory_class>
         <hibernate.cache.provide_class>org.hibernate.cache.EhCacheProvider</hibernate.cache.provide_class>
         <hibernate.cache.use_second_level_cache>true</hibernate.cache.use_second_level_cache>
         <hibernate.cache.use_query_cache>true</hibernate.cache.use_query_cache>

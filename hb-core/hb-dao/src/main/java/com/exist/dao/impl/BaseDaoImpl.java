@@ -18,8 +18,8 @@ import java.util.List;
 
 
 public class BaseDaoImpl<E extends BaseEntity, ID extends Serializable> implements BaseDao<E, ID> {
-    private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
     protected Class<? extends E> clazz;
+    private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
     @SuppressWarnings("unchecked")
     public BaseDaoImpl() {
@@ -28,7 +28,7 @@ public class BaseDaoImpl<E extends BaseEntity, ID extends Serializable> implemen
         clazz = (Class) parameterizedType.getActualTypeArguments()[0];
     }
 
-    protected Session getSession(){
+    protected Session getSession() {
         return sessionFactory.openSession();
     }
 
@@ -39,7 +39,7 @@ public class BaseDaoImpl<E extends BaseEntity, ID extends Serializable> implemen
     @SuppressWarnings("unchecked")
     @Override
     public E findOne(ID id) {
-        try (ClosableSession session = getClosableSession()){
+        try (ClosableSession session = getClosableSession()) {
             return (E) session.getSession().get(clazz, id);
         } catch (Exception e) {
             e.printStackTrace();
@@ -55,11 +55,11 @@ public class BaseDaoImpl<E extends BaseEntity, ID extends Serializable> implemen
     @SuppressWarnings("unchecked")
     @Override
     public List<E> findAll(String field, ResultOrder order) {
-        try (ClosableSession session = getClosableSession()){
+        try (ClosableSession session = getClosableSession()) {
             Criteria criteria = session.getSession().createCriteria(clazz)
                     .setCacheable(true)
                     .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-            if(order == ResultOrder.ASC){
+            if (order == ResultOrder.ASC) {
                 criteria.addOrder(Order.asc(field));
             } else {
                 criteria.addOrder(Order.desc(field));
@@ -75,7 +75,7 @@ public class BaseDaoImpl<E extends BaseEntity, ID extends Serializable> implemen
     @Override
     public void save(E entity) {
         Transaction transaction = null;
-        try (ClosableSession session = getClosableSession()){
+        try (ClosableSession session = getClosableSession()) {
             transaction = session.getSession().beginTransaction();
 
             session.getSession().save(entity);
@@ -83,7 +83,7 @@ public class BaseDaoImpl<E extends BaseEntity, ID extends Serializable> implemen
             transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();
-            if(transaction != null){
+            if (transaction != null) {
                 transaction.rollback();
             }
         }
@@ -92,7 +92,7 @@ public class BaseDaoImpl<E extends BaseEntity, ID extends Serializable> implemen
     @Override
     public void delete(E entity) {
         Transaction transaction = null;
-        try (ClosableSession session = getClosableSession()){
+        try (ClosableSession session = getClosableSession()) {
             transaction = session.getSession().beginTransaction();
 
             session.getSession().delete(entity);
@@ -100,7 +100,7 @@ public class BaseDaoImpl<E extends BaseEntity, ID extends Serializable> implemen
             transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();
-            if(transaction != null){
+            if (transaction != null) {
                 transaction.rollback();
             }
         }

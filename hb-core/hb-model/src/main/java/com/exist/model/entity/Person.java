@@ -2,12 +2,13 @@ package com.exist.model.entity;
 
 import com.exist.model.base.BaseEntity;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.hibernate.annotations.*;
 import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.persistence.Entity;
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -26,25 +27,25 @@ public class Person extends BaseEntity {
     private Address address;
 
     @Column
-    private Date birthDate;
+    private LocalDate birthDate;
 
     @Column
     private Double gwa;
 
     @Column
-    private Date dateHired;
+    private LocalDate dateHired;
 
     @Column
     private Boolean currentlyEmployed;
 
     @OneToMany(mappedBy = "person")
-    private List<Contact> contactInfo;
+    private List<Contact> contactInfo = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(name = "PERSON_ROLE",
             joinColumns = @JoinColumn(name = "PERSON_ID"),
             inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
-    private Set<Role> roles;
+    private Set<Role> roles = new HashSet<>();
 
     public Name getName() {
         return name;
@@ -62,11 +63,11 @@ public class Person extends BaseEntity {
         this.address = address;
     }
 
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 
@@ -78,11 +79,11 @@ public class Person extends BaseEntity {
         this.gwa = gwa;
     }
 
-    public Date getDateHired() {
+    public LocalDate getDateHired() {
         return dateHired;
     }
 
-    public void setDateHired(Date dateHired) {
+    public void setDateHired(LocalDate dateHired) {
         this.dateHired = dateHired;
     }
 
