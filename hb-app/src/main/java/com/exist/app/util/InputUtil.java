@@ -67,9 +67,15 @@ public class InputUtil {
     public static Boolean getEmploymentStatus() {
         boolean valid;
         Boolean isEmployed = false;
+        int opt = 0;
         do {
             valid = true;
-            int opt = scanner.nextInt();
+            try {
+                opt = scanner.nextInt();
+            } catch (InputMismatchException ex) {
+                valid = false;
+                opt = 0;
+            }
             switch (opt) {
                 case 1:
                     isEmployed = true;
@@ -83,6 +89,7 @@ public class InputUtil {
                     break;
             }
         } while (!valid);
+        scanner.nextLine();
         return isEmployed;
     }
 }

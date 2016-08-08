@@ -1,6 +1,6 @@
 package com.exist.app;
 
-
+import com.exist.app.util.PersonInfoUtil;
 import com.exist.app.util.InputUtil;
 import com.exist.dto.AddressDto;
 import com.exist.dto.ContactDto;
@@ -63,78 +63,95 @@ public class App {
         System.out.println("Exiting...");
     }
 
-    private void deleteRole() {
+    public void deleteRole() {
 
     }
 
-    private void updateRole() {
+    public void updateRole() {
 
     }
 
-    private void addRole() {
+    public void addRole() {
 
     }
 
-    private void listRole() {
+    public void listRole() {
 
     }
 
-    private void deletePerson() {
+    public void deletePerson() {
 
     }
 
-    private void updatePerson() {
+    public void updatePerson() {
+        PersonDto person = new PersonDto(); // Person from db
+        System.out.println("Select information you would like to Update:");
+        String menu = "[1 Name] [2 Address] [3 Birthdate] [4 GWA] [5 Employed]"
+                + "\n[6 Contact Information] [7 Roles] [8 Back to Main Menu]";
+        boolean valid;
+        String editMenu = null;
 
+        do {
+            valid = true;
+            int menuOpt = InputUtil.getOption(menu);
+            // Get person ID
+            switch (menuOpt){
+                case 1: 
+                    System.out.println("Update NAME: "); //Print current
+                    person.setName(PersonInfoUtil.addName());
+                    break;
+                case 2: 
+                    System.out.println("Update ADDRESS: "); //Print current
+                    person.setAddress(PersonInfoUtil.addAddress());
+                    break;
+                case 3:
+                    System.out.println("Update Bithdate: "); // Print current
+                    person.setBirthDate(PersonInfoUtil.addBirthDate());
+                    break;
+                case 4:
+                    System.out.println("Update GWA: "); // Print current
+                    person.setGwa(PersonInfoUtil.addGwa());
+                    break;
+                case 5:
+                    System.out.println("Update Employment Status: "); //Print Current
+                    person.setCurrentlyEmployed(PersonInfoUtil.addEmploymentStatus());
+                    break;
+                case 6:
+                    System.out.println("Edit contacts: "); //Print Current
+                    person.getContactInfo().add(PersonInfoUtil.addContact());
+                    break;
+                case 7:
+                    System.out.println("Update Roles: "); //Print Current
+                    //List roles
+                    break;
+                case 8: 
+                    break;
+                default:
+                    break;
+            }
+        } while (!valid);
+        //Print updated person
     }
 
-    private void addPerson() {
+    public void addPerson() {
         System.out.println("Add a Person:");
         PersonDto person = new PersonDto();
 
-        System.out.println("[Name]");
-        String firstName = InputUtil.getInfo("First Name", true);
-        String middleName = InputUtil.getInfo("Middle Name");
-        String lastName = InputUtil.getInfo("Last Name", true);
-        String title = InputUtil.getInfo("Title");
-        String suffix = InputUtil.getInfo("Suffix");
-        NameDto name = new NameDto(firstName, middleName, lastName, suffix, title);
-        person.setName(name);
-
-        System.out.println("[Address]");
-        String streetNumber = InputUtil.getInfo("Street Number");
-        String barangay = InputUtil.getInfo("Barangay");
-        String city = InputUtil.getInfo("City", true);
-        String zipCode = InputUtil.getInfo("Zip Code");
-        AddressDto address = new AddressDto(streetNumber, barangay, city, zipCode);
-        person.setAddress(address);
-
-        System.out.println("[Birth date] format: m/d/yyyy");
-        LocalDate birthDate = InputUtil.getDate();
-        person.setBirthDate(birthDate);
-
-        System.out.println("[GWA] format: n.nn");
-
-        System.out.println("Currently employed? [1 Yes] [2 No]");
-        Boolean employmentStatus = InputUtil.getEmploymentStatus();
-        person.setCurrentlyEmployed(employmentStatus);
-
-        System.out.println("[Contact Info]");
-        String landLine = InputUtil.getInfo("Land Line");
-        String mobileNumber = InputUtil.getInfo("Mobile Number");
-        String email = InputUtil.getInfo("Email");
-        ContactDto contact = new ContactDto(landLine, mobileNumber, email);
-        person.getContactInfo().add(contact);
-
-        System.out.println("[Role]");
-        String roleName = InputUtil.getInfo("Role");
-
+        person.setName(PersonInfoUtil.addName());
+        person.setAddress(PersonInfoUtil.addAddress());
+        person.setBirthDate(PersonInfoUtil.addBirthDate());
+        person.setGwa(PersonInfoUtil.addGwa());
+        person.setCurrentlyEmployed(PersonInfoUtil.addEmploymentStatus());
+        person.getContactInfo().add(PersonInfoUtil.addContact());
+        //Add Role
 
     }
 
-    private void listPerson() {
-        String listPersonMenu = "List Person: [1 by GWA] [2 by Date Hired] [3 Last Name]";
+    public void listPerson() {
+        String listPersonMenu = "List Person: [1 by GWA] [2 by Date Hired] [3 Last Name] [4 Back]";
         String orderMenu = "Order: [1 Ascending] [2 Descending]";
         boolean valid;
+        boolean cont = true;
 
         do {
             valid = true;
@@ -149,6 +166,9 @@ public class App {
                 case 3:
                     System.out.println("List Person by Last Name");
                     break;
+                case 4:
+                    cont = false;
+                    break;
                 default:
                     valid = false;
                     System.out.println("Invalid option!");
@@ -156,22 +176,24 @@ public class App {
             }
         } while (!valid);
 
-        do {
-            valid = true;
-            int orderOpt = InputUtil.getOption(orderMenu);
-            switch (orderOpt) {
-                case 1:
-                    System.out.println("List in ascending order...");
-                    break;
-                case 2:
-                    System.out.println("List in descending order...");
-                    break;
-                default:
-                    valid = false;
-                    System.out.println("Invalid option!");
-                    break;
-            }
-        } while (!valid);
+        if (cont) {
+            do {
+                valid = true;
+                int orderOpt = InputUtil.getOption(orderMenu);
+                switch (orderOpt) {
+                    case 1:
+                        System.out.println("List in ascending order...");
+                        break;
+                    case 2:
+                        System.out.println("List in descending order...");
+                        break;
+                    default:
+                        valid = false;
+                        System.out.println("Invalid option!");
+                        break;
+                }
+            } while (!valid);
+        }
 
     }
 
