@@ -1,6 +1,7 @@
 package com.exist.dto;
 
 import com.exist.dto.base.BaseDto;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
@@ -8,7 +9,7 @@ public class RoleDto extends BaseDto {
     private String name;
 
     public String getName() {
-        return name;
+        return StringUtils.isBlank(name) ? "" : name;
     }
 
     public void setName(String name) {
@@ -35,5 +36,10 @@ public class RoleDto extends BaseDto {
                 .appendSuper(super.hashCode())
                 .append(name)
                 .toHashCode();
+    }
+
+    @Override
+    public String toString(){
+        return getName();
     }
 }

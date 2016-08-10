@@ -1,5 +1,7 @@
 package com.exist.dto;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class AddressDto {
     private String streetNumber;
     private String barangay;
@@ -17,7 +19,7 @@ public class AddressDto {
     }
 
     public String getStreetNumber() {
-        return streetNumber;
+        return StringUtils.isBlank(streetNumber) ? "" : streetNumber + " ";
     }
 
     public void setStreetNumber(String streetNumber) {
@@ -25,7 +27,7 @@ public class AddressDto {
     }
 
     public String getBarangay() {
-        return barangay;
+        return StringUtils.isBlank(barangay) ? "" : barangay + " ";
     }
 
     public void setBarangay(String barangay) {
@@ -33,7 +35,7 @@ public class AddressDto {
     }
 
     public String getCity() {
-        return city;
+        return StringUtils.isBlank(city) ? "" : city + " ";
     }
 
     public void setCity(String city) {
@@ -41,10 +43,18 @@ public class AddressDto {
     }
 
     public String getZipCode() {
-        return zipCode;
+        return StringUtils.isBlank(zipCode) ? "" : zipCode + " ";
     }
 
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
+    }
+
+    @Override
+    public String toString(){
+        return getStreetNumber()
+                + getBarangay()
+                + getCity()
+                + getZipCode();
     }
 }

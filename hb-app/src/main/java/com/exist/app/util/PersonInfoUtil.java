@@ -1,15 +1,14 @@
 package com.exist.app.util;
 
-import com.exist.app.util.InputUtil;
 import com.exist.dto.AddressDto;
 import com.exist.dto.ContactDto;
 import com.exist.dto.NameDto;
-import com.exist.dto.PersonDto;
 
-import java.util.List;
 import java.time.LocalDate;
 
 public class PersonInfoUtil{
+
+
 
 	public static NameDto addName(){
         System.out.println("[Name]");
@@ -18,8 +17,7 @@ public class PersonInfoUtil{
         String lastName = InputUtil.getInfo("Last Name", true);
         String title = InputUtil.getInfo("Title");
         String suffix = InputUtil.getInfo("Suffix");
-        NameDto name = new NameDto(firstName, middleName, lastName, suffix, title);
-        return name;
+        return new NameDto(firstName, middleName, lastName, suffix, title);
     }
 
     public static AddressDto addAddress(){
@@ -28,26 +26,22 @@ public class PersonInfoUtil{
         String barangay = InputUtil.getInfo("Barangay");
         String city = InputUtil.getInfo("City", true);
         String zipCode = InputUtil.getInfo("Zip Code");
-        AddressDto address = new AddressDto(streetNumber, barangay, city, zipCode);
-        return address;
+        return new AddressDto(streetNumber, barangay, city, zipCode);
     }
 
     public static LocalDate addBirthDate(){
         System.out.println("[Birth date] format: m/d/yyyy");
-        LocalDate birthDate = InputUtil.getDate();
-        return birthDate;
+        return InputUtil.getDate();
     }
 
     public static Double addGwa(){
         System.out.println("[GWA] format: n.nn");
-        Double gwa = null; //Input gwa
-        return gwa;
+        return null; //Input gwa
     }
 
     public static Boolean addEmploymentStatus(){
         System.out.println("Currently employed? [1 Yes] [2 No]");
-        Boolean employmentStatus = InputUtil.getEmploymentStatus();
-        return employmentStatus;
+        return InputUtil.getEmploymentStatus();
     }
 
     public static ContactDto addContact(){
@@ -55,8 +49,7 @@ public class PersonInfoUtil{
         String landLine = InputUtil.getInfo("Land Line");
         String mobileNumber = InputUtil.getInfo("Mobile Number");
         String email = InputUtil.getInfo("Email");
-        ContactDto contact = new ContactDto(landLine, mobileNumber, email);
-        return contact;
+        return new ContactDto(landLine, mobileNumber, email);
     }
 
     //Add Role Method

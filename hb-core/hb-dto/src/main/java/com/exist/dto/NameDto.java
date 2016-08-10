@@ -1,5 +1,7 @@
 package com.exist.dto;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class NameDto {
     private String firstName;
     private String middleName;
@@ -24,7 +26,7 @@ public class NameDto {
     }
 
     public String getFirstName() {
-        return firstName;
+        return StringUtils.isBlank(firstName) ? "" : firstName + " ";
     }
 
     public void setFirstName(String firstName) {
@@ -32,7 +34,7 @@ public class NameDto {
     }
 
     public String getMiddleName() {
-        return middleName;
+        return StringUtils.isBlank(middleName) ? "" : middleName + " ";
     }
 
     public void setMiddleName(String middleName) {
@@ -40,7 +42,7 @@ public class NameDto {
     }
 
     public String getLastName() {
-        return lastName;
+        return StringUtils.isBlank(lastName) ? "" : lastName + " ";
     }
 
     public void setLastName(String lastName) {
@@ -48,7 +50,7 @@ public class NameDto {
     }
 
     public String getSuffix() {
-        return suffix;
+        return StringUtils.isBlank(suffix) ? "" : suffix + " ";
     }
 
     public void setSuffix(String suffix) {
@@ -56,10 +58,19 @@ public class NameDto {
     }
 
     public String getTitle() {
-        return title;
+        return StringUtils.isBlank(title) ? "" : title + " ";
     }
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    @Override
+    public String toString(){
+        return getTitle()
+                + getFirstName()
+                + getMiddleName()
+                + getLastName()
+                + getSuffix();
     }
 }

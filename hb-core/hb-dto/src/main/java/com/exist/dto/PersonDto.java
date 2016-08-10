@@ -81,4 +81,11 @@ public class PersonDto extends BaseDto {
     public void setRoles(Set<RoleDto> roles) {
         this.roles = roles;
     }
+
+    @Override
+    public String toString(){
+        return getId().toString() + "\t" + name.toString() + "\t" + address.toString()
+                + "\t" + birthDate.toString() + "\t" + gwa.toString()
+                + "\t" + dateHired.toString() + "\t" + currentlyEmployed.toString();
+    }
 }
