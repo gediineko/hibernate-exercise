@@ -6,6 +6,7 @@ import com.exist.dto.PersonDto;
 import com.exist.model.entity.Person;
 import com.exist.model.ref.ResultOrder;
 import com.exist.services.PersonService;
+import com.exist.util.DaoFactory;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,7 +16,7 @@ public class PersonServiceImpl extends BaseServiceImpl implements PersonService{
     PersonDao personDao;
 
     public PersonServiceImpl(){
-        personDao = new PersonDaoImpl();
+        personDao = DaoFactory.getPersonDao();
     }
 
     @Override

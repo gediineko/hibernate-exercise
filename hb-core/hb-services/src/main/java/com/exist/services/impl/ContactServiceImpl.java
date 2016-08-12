@@ -5,6 +5,7 @@ import com.exist.dao.impl.ContactDaoImpl;
 import com.exist.dto.ContactDto;
 import com.exist.model.entity.Contact;
 import com.exist.services.ContactService;
+import com.exist.util.DaoFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,7 @@ public class ContactServiceImpl extends BaseServiceImpl implements ContactServic
     ContactDao contactDao;
 
     public ContactServiceImpl(){
-        contactDao = new ContactDaoImpl();
+        contactDao = DaoFactory.getContactDao();
     }
 
     @Override

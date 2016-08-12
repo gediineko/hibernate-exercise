@@ -46,7 +46,7 @@ public class Menu{
             try {
                 switch (personMenuOpt) {
                     case 1:
-                        System.out.println("[ID]\t[NAME]\t[ADDRESS]");
+                        // Move System.out.println("[ID]\t[NAME]\t[ADDRESS]\t[Birthdate]\t[GWA]\t[Currently Employed]\t[Date Hired]");
                         personService.findAll(listPersonByMenu(), listOrderMenu());
                         break;
                     case 2:

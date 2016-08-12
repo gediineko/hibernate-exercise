@@ -5,6 +5,7 @@ import com.exist.dao.impl.RoleDaoImpl;
 import com.exist.dto.RoleDto;
 import com.exist.model.entity.Role;
 import com.exist.services.RoleService;
+import com.exist.util.DaoFactory;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -16,7 +17,7 @@ public class RoleServiceImpl extends BaseServiceImpl implements RoleService{
     RoleDao roleDao;
 
     public RoleServiceImpl(){
-        roleDao = new RoleDaoImpl();
+        roleDao = DaoFactory.getRoleDao();
     }
 
     @Override
