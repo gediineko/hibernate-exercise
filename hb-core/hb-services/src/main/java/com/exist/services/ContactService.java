@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface ContactService {
     ContactDto findOne(Long id);
-    List<ContactDto> findAll(); //add parameter?
+    List<ContactDto> findAll();
     void delete(Long id);
     void add(ContactDto contact);
     void update(ContactDto contact);

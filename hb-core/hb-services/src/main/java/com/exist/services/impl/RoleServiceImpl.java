@@ -1,20 +1,20 @@
 package com.exist.services.impl;
 
 import com.exist.dao.RoleDao;
-import com.exist.dao.impl.RoleDaoImpl;
 import com.exist.dto.RoleDto;
 import com.exist.model.entity.Role;
 import com.exist.services.RoleService;
 import com.exist.util.DaoFactory;
 
-import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.List;
 
 /**
  * Created by ggolong on 8/12/16.
  */
 public class RoleServiceImpl extends BaseServiceImpl implements RoleService{
-    RoleDao roleDao;
+    private RoleDao roleDao;
 
     public RoleServiceImpl(){
         roleDao = DaoFactory.getRoleDao();
@@ -30,8 +30,12 @@ public class RoleServiceImpl extends BaseServiceImpl implements RoleService{
     }
 
     @Override
-    public Set<RoleDto> findAll(){ //add parameter?
-        return new HashSet<>(); //Change
+    public Set<RoleDto> findAll(){
+        List<Role> roleList = roleDao.findAll();
+        return roleList
+                .stream()
+                .map(p -> mapper.map(p, RoleDto.class))
+                .collect(Collectors.toSet());
     }
 
     @Override

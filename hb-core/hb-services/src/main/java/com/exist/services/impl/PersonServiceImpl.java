@@ -1,7 +1,6 @@
 package com.exist.services.impl;
 
 import com.exist.dao.PersonDao;
-import com.exist.dao.impl.PersonDaoImpl;
 import com.exist.dto.PersonDto;
 import com.exist.model.entity.Person;
 import com.exist.model.ref.ResultOrder;
@@ -13,7 +12,7 @@ import java.util.stream.Collectors;
 
 
 public class PersonServiceImpl extends BaseServiceImpl implements PersonService{
-    PersonDao personDao;
+    private PersonDao personDao;
 
     public PersonServiceImpl(){
         personDao = DaoFactory.getPersonDao();

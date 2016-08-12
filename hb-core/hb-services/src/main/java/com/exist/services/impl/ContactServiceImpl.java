@@ -1,21 +1,20 @@
 package com.exist.services.impl;
 
 import com.exist.dao.ContactDao;
-import com.exist.dao.impl.ContactDaoImpl;
 import com.exist.dto.ContactDto;
 import com.exist.model.entity.Contact;
 import com.exist.services.ContactService;
 import com.exist.util.DaoFactory;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by ggolong on 8/11/16.
  */
 public class ContactServiceImpl extends BaseServiceImpl implements ContactService{
 
-    ContactDao contactDao;
+    private ContactDao contactDao;
 
     public ContactServiceImpl(){
         contactDao = DaoFactory.getContactDao();
@@ -32,7 +31,11 @@ public class ContactServiceImpl extends BaseServiceImpl implements ContactServic
 
     @Override
     public List<ContactDto> findAll(){ //add parameter?
-        return new ArrayList<>(); //Change
+        List<Contact> contactList = contactDao.findAll();
+        return contactList
+                .stream()
+                .map(p -> mapper.map(p, ContactDto.class))
+                .collect(Collectors.toList());
     }
 
     @Override
