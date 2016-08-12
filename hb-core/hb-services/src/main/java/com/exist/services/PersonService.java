@@ -9,7 +9,7 @@ public interface PersonService {
     PersonDto findOne(Long id);
     List<PersonDto> findAll(String field, String orderStr);
     void delete(Long id);
-    void create(PersonDto person);
+    void add(PersonDto person);
     void update(PersonDto person);
 
 }

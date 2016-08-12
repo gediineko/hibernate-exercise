@@ -44,7 +44,7 @@ public class PersonServiceImpl extends BaseServiceImpl implements PersonService{
     }
 
     @Override
-    public void create(PersonDto personDto){
+    public void add(PersonDto personDto){
         Person person = mapper.map(personDto, Person.class);
         personDao.save(person);
     }
