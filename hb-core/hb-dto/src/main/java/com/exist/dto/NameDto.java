@@ -26,7 +26,7 @@ public class NameDto {
     }
 
     public String getFirstName() {
-        return StringUtils.isBlank(firstName) ? "" : firstName + " ";
+        return firstName;
     }
 
     public void setFirstName(String firstName) {
@@ -34,7 +34,7 @@ public class NameDto {
     }
 
     public String getMiddleName() {
-        return StringUtils.isBlank(middleName) ? "" : middleName + " ";
+        return middleName;
     }
 
     public void setMiddleName(String middleName) {
@@ -42,7 +42,7 @@ public class NameDto {
     }
 
     public String getLastName() {
-        return StringUtils.isBlank(lastName) ? "" : lastName + " ";
+        return lastName;
     }
 
     public void setLastName(String lastName) {
@@ -50,7 +50,7 @@ public class NameDto {
     }
 
     public String getSuffix() {
-        return StringUtils.isBlank(suffix) ? "" : suffix + " ";
+        return suffix;
     }
 
     public void setSuffix(String suffix) {
@@ -58,7 +58,7 @@ public class NameDto {
     }
 
     public String getTitle() {
-        return StringUtils.isBlank(title) ? "" : title + " ";
+        return title;
     }
 
     public void setTitle(String title) {
@@ -67,10 +67,10 @@ public class NameDto {
 
     @Override
     public String toString(){
-        return getTitle()
-                + getFirstName()
-                + getMiddleName()
-                + getLastName()
-                + getSuffix();
+        return (StringUtils.isBlank(title) ? "" : title + " ")
+                + (StringUtils.isBlank(firstName) ? "" : firstName + " ")
+                + (StringUtils.isBlank(middleName) ? "" : middleName + " ")
+                + (StringUtils.isBlank(lastName) ? "" : lastName + " ")
+                + (StringUtils.isBlank(suffix) ? "" : suffix + " ");
     }
 }

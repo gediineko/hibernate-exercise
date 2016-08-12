@@ -19,7 +19,7 @@ public class AddressDto {
     }
 
     public String getStreetNumber() {
-        return StringUtils.isBlank(streetNumber) ? "" : streetNumber + " ";
+        return streetNumber;
     }
 
     public void setStreetNumber(String streetNumber) {
@@ -27,7 +27,7 @@ public class AddressDto {
     }
 
     public String getBarangay() {
-        return StringUtils.isBlank(barangay) ? "" : barangay + " ";
+        return barangay;
     }
 
     public void setBarangay(String barangay) {
@@ -35,7 +35,7 @@ public class AddressDto {
     }
 
     public String getCity() {
-        return StringUtils.isBlank(city) ? "" : city + " ";
+        return city;
     }
 
     public void setCity(String city) {
@@ -43,7 +43,7 @@ public class AddressDto {
     }
 
     public String getZipCode() {
-        return StringUtils.isBlank(zipCode) ? "" : zipCode + " ";
+        return zipCode;
     }
 
     public void setZipCode(String zipCode) {
@@ -52,9 +52,9 @@ public class AddressDto {
 
     @Override
     public String toString(){
-        return getStreetNumber()
-                + getBarangay()
-                + getCity()
-                + getZipCode();
+        return (StringUtils.isBlank(streetNumber) ? "" : streetNumber + " ")
+                + (StringUtils.isBlank(barangay) ? "" : barangay + ", ")
+                + (StringUtils.isBlank(city) ? "" : city + ", ")
+                + (StringUtils.isBlank(zipCode) ? "" : zipCode + " ");
     }
 }

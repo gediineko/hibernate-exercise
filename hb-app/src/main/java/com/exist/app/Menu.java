@@ -46,13 +46,15 @@ public class Menu{
             try {
                 switch (personMenuOpt) {
                     case 1:
-                        personService.listPerson(listPersonByMenu(), listOrderMenu());
+                        System.out.println("[ID]\t[NAME]\t[ADDRESS]");
+                        personService.findAll(listPersonByMenu(), listOrderMenu());
                         break;
                     case 2:
 
                         break;
                     case 3:
                         //view person
+                        //input id of person
                         break;
                     case 4:
                         //Go back to main menu
@@ -61,37 +63,6 @@ public class Menu{
                         throw new Exception();
                 }
             } catch (Exception ex) {
-                valid = false;
-                System.out.println("Invalid option!");
-            }
-        } while (!valid);
-    }
-
-    public void roleMenu() {
-        String roleMenu = "[Role Management]\n[1 List Roles] [2 Add Role] [3 View Roles] [4 Back]";
-        int roleMenuOpt;
-        boolean valid;
-        do {
-            valid = true;
-            roleMenuOpt = InputUtil.getOption(roleMenu);
-            try {
-                switch (roleMenuOpt) {
-                    case 1:
-                        //list role
-                        break;
-                    case 2:
-                        //add role
-                        break;
-                    case 3:
-                        //view role
-                        break;
-                    case 4:
-                        //Go back to main menu
-                        break;
-                    default:
-                        throw new Exception();
-                }
-            } catch (Exception ex){
                 valid = false;
                 System.out.println("Invalid option!");
             }
@@ -156,5 +127,42 @@ public class Menu{
             }
         } while (!valid);
         return order;
+    }
+
+    public String viewPerson(){
+        String viewPersonId = InputUtil.getInfo("Person ID");
+        return viewPersonId;
+    }
+
+    // Role Menu
+    public void roleMenu() {
+        String roleMenu = "[Role Management]\n[1 List Roles] [2 Add Role] [3 View Roles] [4 Back]";
+        int roleMenuOpt;
+        boolean valid;
+        do {
+            valid = true;
+            roleMenuOpt = InputUtil.getOption(roleMenu);
+            try {
+                switch (roleMenuOpt) {
+                    case 1:
+                        //list role
+                        break;
+                    case 2:
+                        //add role
+                        break;
+                    case 3:
+                        //view role
+                        break;
+                    case 4:
+                        //Go back to main menu
+                        break;
+                    default:
+                        throw new Exception();
+                }
+            } catch (Exception ex){
+                valid = false;
+                System.out.println("Invalid option!");
+            }
+        } while (!valid);
     }
 }

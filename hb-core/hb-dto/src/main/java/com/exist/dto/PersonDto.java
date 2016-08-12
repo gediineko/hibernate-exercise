@@ -86,6 +86,6 @@ public class PersonDto extends BaseDto {
     public String toString(){
         return getId().toString() + "\t" + name.toString() + "\t" + address.toString()
                 + "\t" + birthDate.toString() + "\t" + gwa.toString()
-                + "\t" + dateHired.toString() + "\t" + currentlyEmployed.toString();
+                + "\t" + currentlyEmployed.toString() + "\t" + dateHired.toString() + "\t" ;
     }
 }

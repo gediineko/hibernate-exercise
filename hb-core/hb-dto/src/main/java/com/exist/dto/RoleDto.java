@@ -9,7 +9,7 @@ public class RoleDto extends BaseDto {
     private String name;
 
     public String getName() {
-        return StringUtils.isBlank(name) ? "" : name;
+        return name;
     }
 
     public void setName(String name) {

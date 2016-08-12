@@ -90,12 +90,12 @@ public class BaseDaoImpl<E extends BaseEntity, ID extends Serializable> implemen
     }
 
     @Override
-    public void delete(E entity) {
+    public void delete(ID id) {
         Transaction transaction = null;
         try (ClosableSession session = getClosableSession()) {
             transaction = session.getSession().beginTransaction();
 
-            session.getSession().delete(entity);
+            session.getSession().delete(id);
 
             transaction.commit();
         } catch (Exception e) {

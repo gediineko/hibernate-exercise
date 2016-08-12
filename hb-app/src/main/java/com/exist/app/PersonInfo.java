@@ -1,14 +1,24 @@
-package com.exist.app.util;
+package com.exist.app;
 
-import com.exist.dto.AddressDto;
-import com.exist.dto.ContactDto;
-import com.exist.dto.NameDto;
+import com.exist.app.util.InputUtil;
+import com.exist.dto.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
-public class PersonInfoUtil{
+public class PersonInfo{
 
-
+    public void addPerson() {
+        System.out.println("Add a Person:");
+        PersonDto person = new PersonDto();
+        person.setName(addName());
+        person.setAddress(addAddress());
+        person.setBirthDate(addBirthDate());
+        person.setGwa(addGwa());
+        person.setCurrentlyEmployed(addEmploymentStatus());
+    }
 
 	public static NameDto addName(){
         System.out.println("[Name]");
@@ -44,14 +54,21 @@ public class PersonInfoUtil{
         return InputUtil.getEmploymentStatus();
     }
 
-    public static ContactDto addContact(){
+    public static List<ContactDto> addContact(){
         System.out.println("[Contact Info]");
         String landLine = InputUtil.getInfo("Land Line");
         String mobileNumber = InputUtil.getInfo("Mobile Number");
         String email = InputUtil.getInfo("Email");
-        return new ContactDto(landLine, mobileNumber, email);
+        ContactDto contactDto = new ContactDto(landLine, mobileNumber, email);
+        List<ContactDto> contactDtoList = new ArrayList<>();
+        contactDtoList.add(contactDto);
+        return contactDtoList;
     }
 
-    //Add Role Method
+    public static void addRole(Set<RoleDto> roleDtoSet){
+        String name = InputUtil.getInfo("Role");
+        RoleDto roleDto = new RoleDto();
+        roleDtoSet.add(roleDto);
+    }
 
 }

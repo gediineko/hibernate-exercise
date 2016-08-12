@@ -19,7 +19,7 @@
         <jdbc.username>postgres</jdbc.username>
         <jdbc.password>postgres</jdbc.password>
         <hibernate.dialect>org.hibernate.dialect.PostgreSQL9Dialect</hibernate.dialect>
-        <hibernate.show_sql>false</hibernate.show_sql>
+        <hibernate.show_sql>true</hibernate.show_sql>
         <hibernate.cache.region.factory_class>org.hibernate.cache.ehcache.EhCacheRegionFactory
         </hibernate.cache.region.factory_class>
         <hibernate.cache.provide_class>org.hibernate.cache.EhCacheProvider</hibernate.cache.provide_class>

@@ -17,6 +17,6 @@ public interface BaseDao<E extends BaseEntity, ID extends Serializable> {
 
     void save(E entity);
 
-    void delete(E entity);
+    void delete(ID id);
 
 }

@@ -15,7 +15,7 @@ public class ContactDto extends BaseDto {
     }
 
     public String getLandLine() {
-        return StringUtils.isBlank(landLine) ? "" : landLine;
+        return landLine;
     }
 
     public void setLandLine(String landLine) {
@@ -23,7 +23,7 @@ public class ContactDto extends BaseDto {
     }
 
     public String getMobileNumber() {
-        return StringUtils.isBlank(mobileNumber) ? "" : mobileNumber;
+        return mobileNumber;
     }
 
     public void setMobileNumber(String mobileNumber) {
@@ -31,7 +31,7 @@ public class ContactDto extends BaseDto {
     }
 
     public String getEmail() {
-        return StringUtils.isBlank(email) ? "" : email;
+        return email;
     }
 
     public void setEmail(String email) {
@@ -40,8 +40,8 @@ public class ContactDto extends BaseDto {
 
     @Override
     public String toString(){
-        return getLandLine() + "\t"
-                + getMobileNumber() + "\t"
-                + getEmail();
+        return (StringUtils.isBlank(landLine) ? "" : landLine) + "\t"
+                + (StringUtils.isBlank(mobileNumber) ? "" : mobileNumber) + "\t"
+                + (StringUtils.isBlank(email) ? "" : email);
     }
 }
