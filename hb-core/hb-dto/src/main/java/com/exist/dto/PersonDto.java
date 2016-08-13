@@ -2,7 +2,7 @@ package com.exist.dto;
 
 import com.exist.dto.base.BaseDto;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -11,9 +11,9 @@ import java.util.Set;
 public class PersonDto extends BaseDto {
     private NameDto name;
     private AddressDto address;
-    private LocalDate birthDate;
+    private Date birthDate;
     private Double gwa;
-    private LocalDate dateHired;
+    private Date dateHired;
     private Boolean currentlyEmployed;
     private List<ContactDto> contactInfo = new ArrayList<>();
     private Set<RoleDto> roles = new HashSet<>();
@@ -34,11 +34,11 @@ public class PersonDto extends BaseDto {
         this.address = address;
     }
 
-    public LocalDate getBirthDate() {
+    public Date getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(LocalDate birthDate) {
+    public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
 
@@ -50,11 +50,11 @@ public class PersonDto extends BaseDto {
         this.gwa = gwa;
     }
 
-    public LocalDate getDateHired() {
+    public Date getDateHired() {
         return dateHired;
     }
 
-    public void setDateHired(LocalDate dateHired) {
+    public void setDateHired(Date dateHired) {
         this.dateHired = dateHired;
     }
 

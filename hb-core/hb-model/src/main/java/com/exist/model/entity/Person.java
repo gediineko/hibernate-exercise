@@ -6,11 +6,7 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 
 @Entity
@@ -27,13 +23,13 @@ public class Person extends BaseEntity {
     private Address address;
 
     @Column
-    private LocalDate birthDate;
+    private Date birthDate;
 
     @Column
     private Double gwa;
 
     @Column
-    private LocalDate dateHired;
+    private Date dateHired;
 
     @Column
     private Boolean currentlyEmployed;
@@ -63,11 +59,11 @@ public class Person extends BaseEntity {
         this.address = address;
     }
 
-    public LocalDate getBirthDate() {
+    public Date getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(LocalDate birthDate) {
+    public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
 
@@ -79,11 +75,11 @@ public class Person extends BaseEntity {
         this.gwa = gwa;
     }
 
-    public LocalDate getDateHired() {
+    public Date getDateHired() {
         return dateHired;
     }
 
-    public void setDateHired(LocalDate dateHired) {
+    public void setDateHired(Date dateHired) {
         this.dateHired = dateHired;
     }
 
