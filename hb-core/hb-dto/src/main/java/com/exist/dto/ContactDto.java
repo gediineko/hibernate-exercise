@@ -1,12 +1,15 @@
 package com.exist.dto;
 
 import com.exist.dto.base.BaseDto;
-import org.apache.commons.lang3.StringUtils;
-
+import net.karneim.pojobuilder.GeneratePojoBuilder;
+@GeneratePojoBuilder
 public class ContactDto extends BaseDto {
     private String landLine;
     private String mobileNumber;
     private String email;
+
+    public ContactDto() {
+    }
 
     public ContactDto(String landLine, String mobileNumber, String email) {
         this.landLine = landLine;
@@ -36,12 +39,5 @@ public class ContactDto extends BaseDto {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    @Override
-    public String toString(){
-        return (StringUtils.isBlank(landLine) ? "" : landLine) + "\t"
-                + (StringUtils.isBlank(mobileNumber) ? "" : mobileNumber) + "\t"
-                + (StringUtils.isBlank(email) ? "" : email);
     }
 }

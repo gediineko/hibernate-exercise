@@ -1,8 +1,10 @@
 package com.exist.services.impl;
 
 import com.exist.dao.PersonDao;
+import com.exist.dao.RoleDao;
 import com.exist.dto.PersonDto;
 import com.exist.model.entity.Person;
+import com.exist.model.entity.Role;
 import com.exist.model.ref.ResultOrder;
 import com.exist.services.PersonService;
 import com.exist.util.DaoFactory;
@@ -11,17 +13,19 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-public class PersonServiceImpl extends BaseServiceImpl implements PersonService{
+public class PersonServiceImpl extends BaseServiceImpl implements PersonService {
     private PersonDao personDao;
+    private RoleDao roleDao;
 
-    public PersonServiceImpl(){
+    public PersonServiceImpl() {
         personDao = DaoFactory.getPersonDao();
+        roleDao = DaoFactory.getRoleDao();
     }
 
     @Override
-    public PersonDto findOne(Long id){
+    public PersonDto findOne(Long id) {
         Person person = personDao.findOne(id);
-        if (person != null){
+        if (person != null) {
             return mapper.map(person, PersonDto.class);
         }
         return null;
@@ -29,7 +33,7 @@ public class PersonServiceImpl extends BaseServiceImpl implements PersonService{
     }
 
     @Override
-    public List<PersonDto> findAll(String field, String orderStr){
+    public List<PersonDto> findAll(String field, String orderStr) {
         ResultOrder order = orderStr.equals("asc") ? ResultOrder.ASC : ResultOrder.DESC;
         List<Person> personList = personDao.findAll(field, order);
         return personList
@@ -39,21 +43,38 @@ public class PersonServiceImpl extends BaseServiceImpl implements PersonService{
     }
 
     @Override
-    public void delete(Long id){
+    public void delete(Long id) {
         personDao.delete(id);
     }
 
     @Override
-    public void add(PersonDto personDto){
+    public void add(PersonDto personDto) {
         Person person = mapper.map(personDto, Person.class);
         personDao.save(person);
     }
 
     @Override
-    public void update(PersonDto personDto){
+    public void update(PersonDto personDto) {
         Person person = personDao.findOne(personDto.getId());
         mapper.map(personDto, person);
         personDao.save(person);
     }
 
+    @Override
+    public void addRole(Long personId, Long roleId) {
+        Person person = personDao.findOne(personId);
+        Role role = roleDao.findOne(roleId);
+        if (person != null && role != null) {
+            personDao.addRole(personId, roleId);
+        }
+    }
+
+    @Override
+    public void removeRole(Long personId, Long roleId) {
+        Person person = personDao.findOne(personId);
+        Role role = roleDao.findOne(roleId);
+        if (person != null && role != null) {
+            personDao.removeRole(personId, roleId);
+        }
+    }
 }

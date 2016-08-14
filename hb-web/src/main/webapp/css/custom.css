@@ -2,3 +2,16 @@
     padding-top: 50px;
     min-height: 250px;
 }
+
+#main-container {
+    margin-bottom: 50px;
+}
+
+.form-buttons {
+    margin-top: 30px;
+}
+
+.req::after {
+    content: ' *';
+    color: red;
+}

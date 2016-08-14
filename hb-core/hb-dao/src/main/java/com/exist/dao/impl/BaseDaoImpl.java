@@ -78,7 +78,7 @@ public class BaseDaoImpl<E extends BaseEntity, ID extends Serializable> implemen
         try (ClosableSession session = getClosableSession()) {
             transaction = session.getSession().beginTransaction();
 
-            session.getSession().save(entity);
+            session.getSession().saveOrUpdate(entity);
 
             transaction.commit();
         } catch (Exception e) {

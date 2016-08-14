@@ -11,5 +11,12 @@
 
     <artifactId>hb-dto</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>net.karneim</groupId>
+            <artifactId>pojobuilder</artifactId>
+        </dependency>
+    </dependencies>
+
 
 </project>

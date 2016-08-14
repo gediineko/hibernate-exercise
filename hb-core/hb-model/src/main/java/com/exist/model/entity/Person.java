@@ -11,7 +11,7 @@ import java.util.*;
 
 @Entity
 @Cacheable
-@Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Person extends BaseEntity {
 
     private static final long serialVersionUID = -3138466364444175632L;
@@ -34,10 +34,10 @@ public class Person extends BaseEntity {
     @Column
     private Boolean currentlyEmployed;
 
-    @OneToMany(mappedBy = "person")
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
     private List<Contact> contactInfo = new ArrayList<>();
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "PERSON_ROLE",
             joinColumns = @JoinColumn(name = "PERSON_ID"),
             inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))

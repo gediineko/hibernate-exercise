@@ -34,7 +34,7 @@ public class RoleServiceImpl extends BaseServiceImpl implements RoleService{
         List<Role> roleList = roleDao.findAll();
         return roleList
                 .stream()
-                .map(p -> mapper.map(p, RoleDto.class))
+                .map(r -> mapper.map(r, RoleDto.class))
                 .collect(Collectors.toSet());
     }
 
@@ -54,5 +54,21 @@ public class RoleServiceImpl extends BaseServiceImpl implements RoleService{
         Role role = roleDao.findOne(roleDto.getId());
         mapper.map(roleDto, role);
         roleDao.save(role);
+    }
+
+    @Override
+    public Set<RoleDto> findAllByPerson(Long personId) {
+        Set<Role> roles = roleDao.findAllByPerson(personId);
+        return roles.stream()
+                .map(r -> mapper.map(r, RoleDto.class))
+                .collect(Collectors.toSet());
+    }
+
+    @Override
+    public Set<RoleDto> findAllNotIn(List<Long> roleId) {
+        Set<Role> roles = roleDao.findAllNotIn(roleId);
+        return roles.stream()
+                .map(r -> mapper.map(r, RoleDto.class))
+                .collect(Collectors.toSet());
     }
 }

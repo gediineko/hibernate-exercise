@@ -1,7 +1,9 @@
 package com.exist.dto;
 
+import net.karneim.pojobuilder.GeneratePojoBuilder;
 import org.apache.commons.lang3.StringUtils;
 
+@GeneratePojoBuilder
 public class AddressDto {
     private String streetNumber;
     private String barangay;

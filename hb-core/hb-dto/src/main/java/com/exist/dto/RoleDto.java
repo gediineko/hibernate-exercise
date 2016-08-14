@@ -1,10 +1,10 @@
 package com.exist.dto;
 
 import com.exist.dto.base.BaseDto;
-import org.apache.commons.lang3.StringUtils;
+import net.karneim.pojobuilder.GeneratePojoBuilder;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-
+@GeneratePojoBuilder
 public class RoleDto extends BaseDto {
     private String name;
 

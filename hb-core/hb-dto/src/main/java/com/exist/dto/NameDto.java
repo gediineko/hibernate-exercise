@@ -1,7 +1,8 @@
 package com.exist.dto;
 
+import net.karneim.pojobuilder.GeneratePojoBuilder;
 import org.apache.commons.lang3.StringUtils;
-
+@GeneratePojoBuilder
 public class NameDto {
     private String firstName;
     private String middleName;

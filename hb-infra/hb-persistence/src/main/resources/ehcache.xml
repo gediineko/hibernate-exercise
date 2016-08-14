@@ -5,13 +5,13 @@
 
     <diskStore path="java.io.tmpdir/ehcache"/>
 
-    <defaultCache eternal="false"
+    <defaultCache eternal="false" maxEntriesLocalHeap="5000"
                   timeToIdleSeconds="120" timeToLiveSeconds="120" diskSpoolBufferSizeMB="30"
                   diskExpiryThreadIntervalSeconds="120"
                   memoryStoreEvictionPolicy="LRU" statistics="true"/>
 
     <cache name="org.hibernate.cache.internal.StandardQueryCache"
-           eternal="false" timeToLiveSeconds="120"/>
+           eternal="false" timeToLiveSeconds="120" maxEntriesLocalHeap="5000"/>
 
-    <cache name="org.hibernate.cache.spi.UpdateTimestampsCache" eternal="true"/>
+    <cache name="org.hibernate.cache.spi.UpdateTimestampsCache" maxEntriesLocalHeap="5000" eternal="true"/>
 </ehcache>

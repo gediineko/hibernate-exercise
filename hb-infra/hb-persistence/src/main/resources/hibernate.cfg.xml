@@ -16,6 +16,7 @@
         <property name="cache.use_query_cache">${hibernate.cache.use_query_cache}</property>
 
         <property name="hbm2ddl.auto">${hibernate.hbm2ddl}</property>
+        <property name="hbm2ddl.auto.import_files">${hibernate.import_files}</property>
 
         <mapping class="com.exist.model.entity.Person"/>
         <mapping class="com.exist.model.entity.Contact"/>

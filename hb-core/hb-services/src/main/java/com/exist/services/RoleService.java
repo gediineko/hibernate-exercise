@@ -1,8 +1,8 @@
 package com.exist.services;
 
-import com.exist.dao.RoleDao;
 import com.exist.dto.RoleDto;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -14,4 +14,8 @@ public interface RoleService {
     void delete(Long id);
     void add(RoleDto role);
     void update(RoleDto role);
+
+    Set<RoleDto> findAllByPerson(Long personId);
+
+    Set<RoleDto> findAllNotIn(List<Long> roleId);
 }
