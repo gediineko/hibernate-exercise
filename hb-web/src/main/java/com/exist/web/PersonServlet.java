@@ -1,6 +1,7 @@
 package com.exist.web;
 
 import com.exist.dto.*;
+import com.exist.services.ContactService;
 import com.exist.services.PersonService;
 import com.exist.services.RoleService;
 import com.exist.util.ServiceFactory;
@@ -23,6 +24,7 @@ import java.util.stream.Collectors;
 public class PersonServlet extends HttpServlet {
     private PersonService personService = ServiceFactory.getPersonService();
     private RoleService roleService = ServiceFactory.getRoleService();
+    private ContactService contactService = ServiceFactory.getContactService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -51,10 +53,15 @@ public class PersonServlet extends HttpServlet {
                     if (personDto != null) {
                         Set<RoleDto> personRoleList = roleService.findAllByPerson(personDto.getId());
                         Set<RoleDto> roleList = roleService.findAllNotIn(personRoleList.stream().map(RoleDto::getId).collect(Collectors.toList()));
+                        List<ContactDto> personContactList = contactService.findAllByPerson(personDto.getId());
+
                         req.setAttribute("person", personDto);
                         req.setAttribute("personRoleList", personRoleList);
                         req.setAttribute("readonly", true);
                         req.setAttribute("roleList", roleList);
+
+                        req.setAttribute("personContactList", personContactList);
+
                         view = "/WEB-INF/views/person/form.jsp";
                     } else {
                         resp.sendRedirect("/person?error=Person with id " + id + " does not exist");
@@ -100,6 +107,13 @@ public class PersonServlet extends HttpServlet {
                         redirectUrl = "/person/view/" + personId;
                     }
                     break;
+                case "updateContact":
+                    if (StringUtils.isNotBlank(req.getParameter("personId")) && StringUtils.isNotBlank(req.getParameter("contact"))) {
+                        Long personId = Long.valueOf(req.getParameter("personId"));
+                        Long contactId = Long.valueOf(req.getParameter("contact"));
+                        personService.addRole(personId, contactId);
+                        redirectUrl = "/person/view/" + personId;
+                    }
                 default:
                     break;
             }

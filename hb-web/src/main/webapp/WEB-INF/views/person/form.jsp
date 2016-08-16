@@ -4,7 +4,7 @@
 
 <t:main title="Person Form">
     <form class="form" action="/person/create" method="post">
-        <input type="hidden" name="id" id="id">
+        <input type="hidden" name="id" id="id" value="${person.id}">
         <div class="row">
             <div class="col-md-6">
                 <h3>Personal Information</h3>
@@ -141,7 +141,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" >
                     <label class="control-label" for="dateHired">Date Hired</label>
                     <fmt:formatDate value="${person.dateHired}" var="dateHired" pattern="yyyy-MM-dd"/>
                     <input type="date" id="date2Hired" class="form-control" placeholder="Date Hired" name="dateHired"
@@ -163,8 +163,11 @@
             </div>
         </c:if>
     </form>
+
+
     <c:if test="${readonly}">
         <div class="row">
+            <!-- Person Role -->
             <div class="col-md-6">
                 <h3>Roles
                     <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#roleModal">Add Role
@@ -200,19 +203,62 @@
                         </tbody>
                     </table>
                 </div>
+            </div>
+            <!-- Person Contact -->
+            <div class="col-md-6">
+                <h3>Contacts
+                <span class="dropdown pull-right">
+                    <button class="btn btn-default dropdown-toggle" type="button"
+                                id="dropdownMenu${person.id}"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            Actions
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu${person.id}">
+                        <li><a href="#" data-toggle="modal" data-target="#contactModal">Update</a></li>
+                        <li><a href="#">Delete</a></li>
+                    </ul>
+                </span>
 
+                </h3>
+                <br>
+                <div class="table-responsive">
+                    <table class="table-condensed table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Mobile Number</th>
+                            <th>Land Line</th>
+                            <th>E-mail</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:if test="${personContactList.isEmpty()}">
+                            <tr>
+                                <td colspan="3" class="text-center">Person has no contacts</td>
+                            </tr>
+                        </c:if>
+                        <c:forEach var="contact" items="${personContactList}">
+                            <tr>
+                                <td>${contact.mobileNumber}</td>
+                                <td>${contact.landLine}</td>
+                                <td>${contact.email}</td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </c:if>
 
-    <!-- Modal -->
+    <!-- Modal for Role-->
     <div class="modal fade" id="roleModal" tabindex="-1" role="dialog" aria-labelledby="roleModalTitle">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="roleModalTitle">Modal title</h4>
+                    <h4 class="modal-title" id="roleModalTitle">Add Role</h4>
                 </div>
                 <div class="modal-body">
                     <form class="form" action="/person/addRole" method="post" id="addRoleForm">
@@ -235,4 +281,40 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal for Contacts -->
+    <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalTitle">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="contactModalTitle">Update Contact</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form" action="/person/updateContact" method="post" id="updateContactForm">
+                        <input type="hidden" name="personId" value='${person.id}'>
+                        <div class="form-group">
+                            <label class="control-label" for="updateMobileNum">Mobile Number</label>
+                            <input type="text" id="updateMobileNum" class="form-control" placeholder="Mobile Number"
+                                   name="updateMobileNumber" />
+                            <br>
+                            <label for="updateLandLine" class="control-label">Land Line</label>
+                            <input type="text" class="form-control" id="updateLandLine" placeholder="Land Line"
+                                   name="updateLandLine" value=""/>
+                            <br>
+                            <label for="updateEmail" class="control-label">Email</label>
+                            <input type="text" name="updateEmail" id="updateEmail" class="form-control"
+                                   placeholder="Email" value=""/>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" form="UpdateContactForm">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </t:main>

@@ -11,6 +11,5 @@ import java.util.Set;
 public interface RoleDao extends BaseDao<Role, Long> {
 
     Set<Role> findAllByPerson(Long personId);
-
     Set<Role> findAllNotIn(List<Long> roleIds);
 }

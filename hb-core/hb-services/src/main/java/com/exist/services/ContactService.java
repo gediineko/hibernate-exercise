@@ -10,6 +10,7 @@ import java.util.List;
 public interface ContactService {
     ContactDto findOne(Long id);
     List<ContactDto> findAll();
+    List<ContactDto> findAllByPerson(Long personId);
     void delete(Long id);
     void add(ContactDto contact);
     void update(ContactDto contact);

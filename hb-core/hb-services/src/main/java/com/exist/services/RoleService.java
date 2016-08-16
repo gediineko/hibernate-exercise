@@ -14,8 +14,6 @@ public interface RoleService {
     void delete(Long id);
     void add(RoleDto role);
     void update(RoleDto role);
-
     Set<RoleDto> findAllByPerson(Long personId);
-
     Set<RoleDto> findAllNotIn(List<Long> roleId);
 }

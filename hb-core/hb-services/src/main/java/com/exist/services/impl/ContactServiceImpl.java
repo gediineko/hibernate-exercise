@@ -39,6 +39,14 @@ public class ContactServiceImpl extends BaseServiceImpl implements ContactServic
     }
 
     @Override
+    public List<ContactDto> findAllByPerson(Long personId) {
+        List<Contact> contacts = contactDao.findAllByPerson(personId);
+        return contacts.stream()
+                .map(r -> mapper.map(r, ContactDto.class))
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public void delete(Long id){
         contactDao.delete(id);
     }

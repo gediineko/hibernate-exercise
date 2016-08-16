@@ -20,7 +20,7 @@
     <div class="container">
         <div class="navbar-header">
             <a class="navbar-brand" href="/">
-                Gedii
+                Main
             </a>
         </div>
         <c:if test="${requestScope.get('javax.servlet.forward.request_uri') != '/'}">
