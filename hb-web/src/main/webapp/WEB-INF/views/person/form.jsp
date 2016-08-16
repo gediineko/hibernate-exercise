@@ -4,10 +4,17 @@
 
 <t:main title="Person Form">
     <form class="form" action="/person/create" method="post">
+
         <input type="hidden" name="id" id="id" value="${person.id}">
+
+        <div class="text-center">
+            <h1>Person Information</h1>
+        </div>
+
         <div class="row">
             <div class="col-md-6">
-                <h3>Personal Information</h3>
+                <h3>Name</h3>
+
                 <div class="form-group">
                     <label class="control-label" for="title">Title</label>
                     <input type="text" class="form-control" id="title" placeholder="Title" name="title"
@@ -15,7 +22,7 @@
                             <c:if test="${readonly}">
                                 readonly="readonly"
                             </c:if>
-                    />
+                            />
                 </div>
                 <div class="form-group">
                     <label class="control-label req" for="firstName">First Name</label>
@@ -24,7 +31,7 @@
                             <c:if test="${readonly}">
                                 readonly="readonly"
                             </c:if>
-                    />
+                            />
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="middleName">Middle Name</label>
@@ -33,7 +40,7 @@
                             <c:if test="${readonly}">
                                 readonly="readonly"
                             </c:if>
-                    />
+                            />
                 </div>
                 <div class="form-group">
                     <label class="control-label req" for="lastName">Last Name</label>
@@ -42,7 +49,7 @@
                             <c:if test="${readonly}">
                                 readonly="readonly"
                             </c:if>
-                    />
+                            />
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="suffix">Suffix</label>
@@ -51,60 +58,70 @@
                             <c:if test="${readonly}">
                                 readonly="readonly"
                             </c:if>
-                    />
+                            />
                 </div>
+
+
                 <div class="form-group">
-                    <label class="control-label req" for="birthDate">Birth Date</label>
+                    <h3 class="control-label req" for="birthDate">Birth Date</h3>
                     <fmt:formatDate value="${person.birthDate}" var="birthDate" pattern="yyyy-MM-dd"/>
                     <input type="date" id="birthDate" class="form-control" placeholder="Birth Date" name="birthDate"
                            required value='${birthDate}'
                             <c:if test="${readonly}">
                                 readonly="readonly"
                             </c:if>
-                    />
+                            />
                 </div>
+
             </div>
 
             <div class="col-md-6">
                 <h3>Address</h3>
-                <div class="form-group">
-                    <label class="control-label" for="streetNumber">Street No.</label>
-                    <input type="text" id="streetNumber" class="form-control" placeholder="Street Number"
-                           name="streetNumber" value='${person.address.streetNumber}'
-                            <c:if test="${readonly}">
-                                readonly="readonly"
-                            </c:if>
-                    />
+
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label class="control-label" for="streetNumber">Street No.</label>
+                        <input type="text" id="streetNumber" class="form-control" placeholder="Street Number"
+                               name="streetNumber" value='${person.address.streetNumber}'
+                                <c:if test="${readonly}">
+                                    readonly="readonly"
+                                </c:if>
+                                />
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="control-label" for="barangay">Barangay</label>
+                        <input type="text" id="barangay" class="form-control" placeholder="Barangay" name="barangay"
+                               value='${person.address.barangay}'
+                                <c:if test="${readonly}">
+                                    readonly="readonly"
+                                </c:if>
+                                />
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label class="control-label" for="barangay">Barangay</label>
-                    <input type="text" id="barangay" class="form-control" placeholder="Barangay" name="barangay"
-                           value='${person.address.barangay}'
-                            <c:if test="${readonly}">
-                                readonly="readonly"
-                            </c:if>
-                    />
-                </div>
-                <div class="form-group">
-                    <label class="control-label req" for="city">City</label>
-                    <input type="text" id="city" class="form-control" placeholder="City" name="city" required
-                           value='${person.address.city}'
-                            <c:if test="${readonly}">
-                                readonly="readonly"
-                            </c:if>
-                    />
-                </div>
-                <div class="form-group">
-                    <label class="control-label" for="zipCode">Zip Code</label>
-                    <input type="text" id="zipCode" class="form-control" placeholder="Zip Code" name="zipCode"
-                           value='${person.address.zipCode}'
-                            <c:if test="${readonly}">
-                                readonly="readonly"
-                            </c:if>
-                    />
+
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label class="control-label req" for="city">City</label>
+                        <input type="text" id="city" class="form-control" placeholder="City" name="city" required
+                               value='${person.address.city}'
+                                <c:if test="${readonly}">
+                                    readonly="readonly"
+                                </c:if>
+                                />
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="control-label" for="zipCode">Zip Code</label>
+                        <input type="text" id="zipCode" class="form-control" placeholder="Zip Code" name="zipCode"
+                               value='${person.address.zipCode}'
+                                <c:if test="${readonly}">
+                                    readonly="readonly"
+                                </c:if>
+                                />
+                    </div>
                 </div>
 
                 <h3>Other Info</h3>
+
                 <div class="form-group">
                     <label class="control-label" for="gwa">GWA</label>
                     <input type="number" name="gwa" id="gwa" class="form-control" placeholder="GWA"
@@ -112,10 +129,11 @@
                             <c:if test="${readonly}">
                                 readonly="readonly"
                             </c:if>
-                    />
+                            />
                 </div>
                 <div class="form-group">
                     <label>Currently Employed</label>
+
                     <div class="radio row">
                         <div class="col-md-12">
                             <label class="col-md-3">
@@ -126,7 +144,7 @@
                                         <c:if test="${readonly}">
                                             disabled="disabled"
                                         </c:if>
-                                /> Yes
+                                        /> Yes
                             </label>
                             <label class="col-md-3">
                                 <input type="radio" name="currentlyEmployed" id="currentlyEmployedNo" value="false"
@@ -136,12 +154,12 @@
                                         <c:if test="${readonly}">
                                             disabled="disabled"
                                         </c:if>
-                                /> No
+                                        /> No
                             </label>
                         </div>
                     </div>
                 </div>
-                <div class="form-group" >
+                <div class="form-group">
                     <label class="control-label" for="dateHired">Date Hired</label>
                     <fmt:formatDate value="${person.dateHired}" var="dateHired" pattern="yyyy-MM-dd"/>
                     <input type="date" id="date2Hired" class="form-control" placeholder="Date Hired" name="dateHired"
@@ -150,7 +168,7 @@
                             <c:if test="${readonly}">
                                 readonly="readonly"
                             </c:if>
-                    />
+                            />
                 </div>
             </div>
         </div>
@@ -167,6 +185,53 @@
 
     <c:if test="${readonly}">
         <div class="row">
+
+            <!-- Person Contact -->
+            <div class="col-md-6">
+                <h3>Contacts
+                <span class="dropdown pull-right">
+                    <button class="btn btn-default dropdown-toggle" type="button"
+                            id="dropdownMenu${person.id}"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        Actions
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu${person.id}">
+                        <li><a href="#" data-toggle="modal" data-target="#contactModal">Update</a></li>
+                        <li><a href="#">Delete</a></li>
+                    </ul>
+                </span>
+
+                </h3>
+                <br>
+
+                <div class="table-responsive">
+                    <table class="table-condensed table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Mobile Number</th>
+                            <th>Land Line</th>
+                            <th>E-mail</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:if test="${personContactList.isEmpty()}">
+                            <tr>
+                                <td colspan="3" class="text-center">Person has no contacts</td>
+                            </tr>
+                        </c:if>
+                        <c:forEach var="contact" items="${personContactList}">
+                            <tr>
+                                <td>${contact.mobileNumber}</td>
+                                <td>${contact.landLine}</td>
+                                <td>${contact.email}</td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
             <!-- Person Role -->
             <div class="col-md-6">
                 <h3>Roles
@@ -174,6 +239,7 @@
                     </button>
                 </h3>
                 <br>
+
                 <div class="table-responsive">
                     <table class="table-condensed table table-bordered">
                         <thead>
@@ -204,50 +270,7 @@
                     </table>
                 </div>
             </div>
-            <!-- Person Contact -->
-            <div class="col-md-6">
-                <h3>Contacts
-                <span class="dropdown pull-right">
-                    <button class="btn btn-default dropdown-toggle" type="button"
-                                id="dropdownMenu${person.id}"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            Actions
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu${person.id}">
-                        <li><a href="#" data-toggle="modal" data-target="#contactModal">Update</a></li>
-                        <li><a href="#">Delete</a></li>
-                    </ul>
-                </span>
 
-                </h3>
-                <br>
-                <div class="table-responsive">
-                    <table class="table-condensed table table-bordered">
-                        <thead>
-                        <tr>
-                            <th>Mobile Number</th>
-                            <th>Land Line</th>
-                            <th>E-mail</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <c:if test="${personContactList.isEmpty()}">
-                            <tr>
-                                <td colspan="3" class="text-center">Person has no contacts</td>
-                            </tr>
-                        </c:if>
-                        <c:forEach var="contact" items="${personContactList}">
-                            <tr>
-                                <td>${contact.mobileNumber}</td>
-                                <td>${contact.landLine}</td>
-                                <td>${contact.email}</td>
-                            </tr>
-                        </c:forEach>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
         </div>
     </c:if>
 
@@ -263,6 +286,7 @@
                 <div class="modal-body">
                     <form class="form" action="/person/addRole" method="post" id="addRoleForm">
                         <input type="hidden" name="personId" value='${person.id}'>
+
                         <div class="form-group">
                             <label class="control-label" for="role">Role</label>
                             <select name="role" id="role" class="form-control" required>
@@ -294,10 +318,11 @@
                 <div class="modal-body">
                     <form class="form" action="/person/updateContact" method="post" id="updateContactForm">
                         <input type="hidden" name="personId" value='${person.id}'>
+
                         <div class="form-group">
                             <label class="control-label" for="updateMobileNum">Mobile Number</label>
                             <input type="text" id="updateMobileNum" class="form-control" placeholder="Mobile Number"
-                                   name="updateMobileNumber" />
+                                   name="updateMobileNumber"/>
                             <br>
                             <label for="updateLandLine" class="control-label">Land Line</label>
                             <input type="text" class="form-control" id="updateLandLine" placeholder="Land Line"
