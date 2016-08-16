@@ -4,40 +4,30 @@ import com.exist.dto.base.BaseDto;
 import net.karneim.pojobuilder.GeneratePojoBuilder;
 @GeneratePojoBuilder
 public class ContactDto extends BaseDto {
-    private String landLine;
-    private String mobileNumber;
-    private String email;
+    private String contactInfo;
+    private String contactType;
 
     public ContactDto() {
     }
 
-    public ContactDto(String landLine, String mobileNumber, String email) {
-        this.landLine = landLine;
-        this.mobileNumber = mobileNumber;
-        this.email = email;
+    public ContactDto(String contactInfo, String contactType) {
+        this.contactInfo = contactInfo;
+        this.contactType = contactType;
     }
 
-    public String getLandLine() {
-        return landLine;
+    public String getContactInfo() {
+        return contactInfo;
     }
 
-    public void setLandLine(String landLine) {
-        this.landLine = landLine;
+    public void setContactInfo(String contactInfo) {
+        this.contactInfo = contactInfo;
     }
 
-    public String getMobileNumber() {
-        return mobileNumber;
+    public String getContactType() {
+        return contactType;
     }
 
-    public void setMobileNumber(String mobileNumber) {
-        this.mobileNumber = mobileNumber;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public void setContactType(String contactType) {
+        this.contactType = contactType;
     }
 }

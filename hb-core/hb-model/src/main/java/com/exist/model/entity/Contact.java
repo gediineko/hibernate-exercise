@@ -19,13 +19,26 @@ public class Contact extends BaseEntity {
     private Person person;
 
     @Column
-    private String landLine;
+    private String contactInfo;
 
     @Column
-    private String mobileNumber;
+    private String contactType;
 
-    @Column
-    private String email;
+    public String getContactInfo() {
+        return contactInfo;
+    }
+
+    public void setContactInfo(String contactInfo) {
+        this.contactInfo = contactInfo;
+    }
+
+    public String getContactType() {
+        return contactType;
+    }
+
+    public void setContactType(String contactType) {
+        this.contactType = contactType;
+    }
 
     public Person getPerson() {
         return person;
@@ -35,27 +48,5 @@ public class Contact extends BaseEntity {
         this.person = person;
     }
 
-    public String getLandLine() {
-        return landLine;
-    }
 
-    public void setLandLine(String landLine) {
-        this.landLine = landLine;
-    }
-
-    public String getMobileNumber() {
-        return mobileNumber;
-    }
-
-    public void setMobileNumber(String mobileNumber) {
-        this.mobileNumber = mobileNumber;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }

@@ -8,6 +8,6 @@ INSERT INTO public.role VALUES (default, 'Administrator');
 
 INSERT INTO public.person_role VALUES (1, 1);
 
-INSERT INTO public.contact VALUES (default, 'geraldinegolong@gmail.com', '123-4567', '+6399999999', 1);
+INSERT INTO public.contact VALUES (default, '+639275206334', 'Mobile Number', 1);
 
 

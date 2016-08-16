@@ -24,6 +24,7 @@
                             </c:if>
                             />
                 </div>
+
                 <div class="form-group">
                     <label class="control-label req" for="firstName">First Name</label>
                     <input type="text" class="form-control" id="firstName" placeholder="First Name" name="firstName"
@@ -33,6 +34,7 @@
                             </c:if>
                             />
                 </div>
+
                 <div class="form-group">
                     <label class="control-label" for="middleName">Middle Name</label>
                     <input type="text" id="middleName" class="form-control" placeholder="Middle Name"
@@ -42,6 +44,7 @@
                             </c:if>
                             />
                 </div>
+
                 <div class="form-group">
                     <label class="control-label req" for="lastName">Last Name</label>
                     <input type="text" id="lastName" class="form-control" placeholder="Last Name" name="lastName"
@@ -51,6 +54,7 @@
                             </c:if>
                             />
                 </div>
+
                 <div class="form-group">
                     <label class="control-label" for="suffix">Suffix</label>
                     <input type="text" id="suffix" class="form-control" placeholder="Suffix" name="suffix"
@@ -76,6 +80,7 @@
             </div>
 
             <div class="col-md-6">
+
                 <h3>Address</h3>
 
                 <div class="row">
@@ -131,6 +136,7 @@
                             </c:if>
                             />
                 </div>
+
                 <div class="form-group">
                     <label>Currently Employed</label>
 
@@ -159,6 +165,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="form-group">
                     <label class="control-label" for="dateHired">Date Hired</label>
                     <fmt:formatDate value="${person.dateHired}" var="dateHired" pattern="yyyy-MM-dd"/>
@@ -170,7 +177,9 @@
                             </c:if>
                             />
                 </div>
+
             </div>
+
         </div>
 
         <c:if test="${!readonly}">
@@ -197,8 +206,8 @@
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu${person.id}">
+                        <li><a href="#" data-toggle="modal" data-target="#addContactModal">Add</a></li>
                         <li><a href="#" data-toggle="modal" data-target="#contactModal">Update</a></li>
-                        <li><a href="#">Delete</a></li>
                     </ul>
                 </span>
 
@@ -209,22 +218,28 @@
                     <table class="table-condensed table table-bordered">
                         <thead>
                         <tr>
-                            <th>Mobile Number</th>
-                            <th>Land Line</th>
-                            <th>E-mail</th>
+                            <th>Type</th>
+                            <th>Info</th>
+                            <th>Delete</th>
                         </tr>
                         </thead>
                         <tbody>
                         <c:if test="${personContactList.isEmpty()}">
                             <tr>
-                                <td colspan="3" class="text-center">Person has no contacts</td>
+                                <td colspan="2" class="text-center">Person has no contacts</td>
                             </tr>
                         </c:if>
                         <c:forEach var="contact" items="${personContactList}">
                             <tr>
-                                <td>${contact.mobileNumber}</td>
-                                <td>${contact.landLine}</td>
-                                <td>${contact.email}</td>
+                                <td>${contact.contactType}</td>
+                                <td>${contact.contactInfo}</td>
+                                <td>
+                                    <form action="/person/removeContact" method="post" id="deleteForm${role.id}">
+                                        <input type="hidden" name="personId" value="${person.id}">
+                                        <input type="hidden" name="contactId" value="${contact.id}">
+                                        <button class="btn btn-link" type="submit"><i class="fa fa-times"></i></button>
+                                    </form>
+                                </td>
                             </tr>
                         </c:forEach>
                         </tbody>
@@ -307,36 +322,25 @@
     </div>
 
     <!-- Modal for Contacts -->
-    <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalTitle">
+    <div class="modal fade" id="addContactModal" tabindex="-1" role="dialog" aria-labelledby="addContactModalTitle">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="contactModalTitle">Update Contact</h4>
+                    <h4 class="modal-title" id="addContactModalTitle">Add Contact</h4>
                 </div>
                 <div class="modal-body">
-                    <form class="form" action="/person/updateContact" method="post" id="updateContactForm">
+                    <form class="form" action="/person/addContact" method="post" id="addContactForm">
                         <input type="hidden" name="personId" value='${person.id}'>
 
-                        <div class="form-group">
-                            <label class="control-label" for="updateMobileNum">Mobile Number</label>
-                            <input type="text" id="updateMobileNum" class="form-control" placeholder="Mobile Number"
-                                   name="updateMobileNumber"/>
-                            <br>
-                            <label for="updateLandLine" class="control-label">Land Line</label>
-                            <input type="text" class="form-control" id="updateLandLine" placeholder="Land Line"
-                                   name="updateLandLine" value=""/>
-                            <br>
-                            <label for="updateEmail" class="control-label">Email</label>
-                            <input type="text" name="updateEmail" id="updateEmail" class="form-control"
-                                   placeholder="Email" value=""/>
-                        </div>
+
+
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" form="UpdateContactForm">Save changes</button>
+                    <button type="submit" class="btn btn-primary" form="addContactForm">Save changes</button>
                 </div>
             </div>
         </div>
