@@ -1,6 +1,7 @@
 package com.exist.dao.impl;
 
 import com.exist.dao.PersonDao;
+import com.exist.model.entity.Contact;
 import com.exist.model.entity.Person;
 import com.exist.model.entity.Role;
 import com.exist.util.ClosableSession;
@@ -44,6 +45,26 @@ public class PersonDaoImpl extends BaseDaoImpl<Person, Long> implements PersonDa
         } catch (Exception e) {
             e.printStackTrace();
             if (transaction != null) {
+                transaction.rollback();
+            }
+        }
+    }
+
+    @Override
+    public void removeContact(Long personId, Long contactId) {
+        Transaction transaction = null;
+        try (ClosableSession session = getClosableSession()){
+            transaction = session.getSession().beginTransaction();
+            Person person = (Person) session.getSession().get(clazz, personId);
+            Contact contact = (Contact) session.getSession().get(Contact.class, contactId);
+
+            person.getContactInfo().remove(contact);
+
+            session.getSession().update(person);
+            transaction.commit();
+        } catch (Exception e){
+            e.printStackTrace();
+            if (transaction != null){
                 transaction.rollback();
             }
         }

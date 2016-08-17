@@ -1,8 +1,10 @@
 package com.exist.services.impl;
 
+import com.exist.dao.ContactDao;
 import com.exist.dao.PersonDao;
 import com.exist.dao.RoleDao;
 import com.exist.dto.PersonDto;
+import com.exist.model.entity.Contact;
 import com.exist.model.entity.Person;
 import com.exist.model.entity.Role;
 import com.exist.model.ref.ResultOrder;
@@ -16,10 +18,12 @@ import java.util.stream.Collectors;
 public class PersonServiceImpl extends BaseServiceImpl implements PersonService {
     private PersonDao personDao;
     private RoleDao roleDao;
+    private ContactDao contactDao;
 
     public PersonServiceImpl() {
         personDao = DaoFactory.getPersonDao();
         roleDao = DaoFactory.getRoleDao();
+        contactDao = DaoFactory.getContactDao();
     }
 
     @Override
@@ -77,6 +81,15 @@ public class PersonServiceImpl extends BaseServiceImpl implements PersonService 
         Role role = roleDao.findOne(roleId);
         if (person != null && role != null) {
             personDao.removeRole(personId, roleId);
+        }
+    }
+
+    @Override
+    public void removeContact(Long personId, Long contactId) {
+        Person person = personDao.findOne(personId);
+        Contact contact = contactDao.findOne(contactId);
+        if (person != null && contact != null){
+            personDao.removeContact(personId, contactId);
         }
     }
 }

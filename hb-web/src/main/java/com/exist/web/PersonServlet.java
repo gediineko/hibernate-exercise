@@ -108,7 +108,15 @@ public class PersonServlet extends HttpServlet {
                     }
                     break;
                 case "updateContact":
-
+                    break;
+                case "removeContact":
+                    if (StringUtils.isNotBlank(req.getParameter("personId")) && StringUtils.isNotBlank(req.getParameter("contactId"))){
+                        Long personId = Long.valueOf(req.getParameter("personId"));
+                        Long contactId = Long.valueOf(req.getParameter("contactId"));
+                        personService.removeContact(personId, contactId);
+                        redirectUrl = "/person/view/" + personId;
+                    }
+                    break;
                 default:
                     break;
             }
