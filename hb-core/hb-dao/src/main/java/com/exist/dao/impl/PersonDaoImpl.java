@@ -59,8 +59,9 @@ public class PersonDaoImpl extends BaseDaoImpl<Person, Long> implements PersonDa
             Contact contact = (Contact) session.getSession().get(Contact.class, contactId);
 
             person.getContactInfo().remove(contact);
+            contact.setPerson(null);
 
-            session.getSession().update(person);
+            session.getSession().update(contact);
 
             transaction.commit();
         } catch (Exception e){

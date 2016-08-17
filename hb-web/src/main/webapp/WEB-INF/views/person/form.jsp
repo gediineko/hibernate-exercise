@@ -197,30 +197,22 @@
 
             <!-- Person Contact -->
             <div class="col-md-6">
+
                 <h3>Contacts
-                    <span class="dropdown pull-right">
-                        <button class="btn btn-default dropdown-toggle" type="button"
-                                id="dropdownMenu${person.id}"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            Actions
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu${person.id}">
-                            <li><a href="#" data-toggle="modal" data-target="#addContactModal">Add</a></li>
-                            <li><a href="#" data-toggle="modal" data-target="#contactModal">Update</a></li>
-                        </ul>
-                    </span>
+                    <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#contactModal">Add
+                        Contact
+                    </button>
                 </h3>
 
                 <br>
 
-                <div class="table-responsive">
+                <div>
                     <table class="table-condensed table table-bordered">
                         <thead>
                         <tr>
                             <th>Type</th>
                             <th>Info</th>
-                            <th>Delete</th>
+                            <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -234,13 +226,31 @@
                                 <td>${contact.contactType}</td>
                                 <td>${contact.contactInfo}</td>
                                 <td>
-                                    <form action="/person/removeContact" method="post" id="deleteForm${contact.id}">
-                                        <input type="hidden" name="personId" value="${person.id}">
-                                        <input type="hidden" name="contactId" value="${contact.id}">
-                                        <button class="btn btn-link" type="submit"><i class="fa fa-times"></i></button>
-                                    </form>
+                                    <span class="dropdown pull-right">
+                                        <button class="btn btn-default dropdown-toggle" type="button"
+                                                id="dropdownMenuContact${contact.id}"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                            Actions
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuContact${contact.id}">
+                                            <li><button href="#" data-toggle="modal"
+                                                        data-target="#contactModal${contact.id}" class="btn btn-link">Update</button></li>
+                                            <li>
+                                                <form action="/person/removeContact" method="post"
+                                                      id="deleteForm${contact.id}">
+                                                    <input type="hidden" name="personId" value="${person.id}">
+                                                    <input type="hidden" name="contactId" value="${contact.id}">
+                                                    <button class="btn btn-link" type="submit">Delete</button>
+                                                </form>
+                                            </li>
+                                        </ul>
+                                    </span>
                                 </td>
                             </tr>
+                            <t:contactModal mode="Edit" contactId="${contact.id}"
+                                            personId="${person.id}" contactType="${contact.contactType}"
+                                            contactInfo="${contact.contactInfo}"/>
                         </c:forEach>
                         </tbody>
                     </table>
@@ -255,12 +265,12 @@
                 </h3>
                 <br>
 
-                <div class="table-responsive">
+                <div>
                     <table class="table-condensed table table-bordered">
                         <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Delete</th>
+                            <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -273,11 +283,23 @@
                             <tr>
                                 <td>${role.name}</td>
                                 <td>
-                                    <form action="/person/removeRole" method="post" id="deleteForm${role.id}">
-                                        <input type="hidden" name="personId" value="${person.id}">
-                                        <input type="hidden" name="roleId" value="${role.id}">
-                                        <button class="btn btn-link" type="submit"><i class="fa fa-times"></i></button>
-                                    </form>
+                                    <span class="dropdown pull-right">
+                                    <button class="btn btn-default dropdown-toggle" type="button"
+                                            id="dropdownMenuRole${role.id}"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                        Actions
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuRole${role.id}">
+                                        <li>
+                                            <form action="/person/removeRole" method="post" id="deleteForm${role.id}">
+                                                <input type="hidden" name="personId" value="${person.id}">
+                                                <input type="hidden" name="roleId" value="${role.id}">
+                                                <button class="btn btn-link" type="submit">Delete</button>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                    </span>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -322,40 +344,7 @@
     </div>
 
     <!-- Modal for Contacts -->
-    <div class="modal fade" id="addContactModal" tabindex="-1" role="dialog" aria-labelledby="addContactModalTitle">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="addContactModalTitle">Add Contact</h4>
-                </div>
-                <div class="modal-body">
-                    <form class="form" action="/person/addContact" method="post" id="addContactForm">
-                        <input type="hidden" name="personId" value='${person.id}'>
+    <t:contactModal mode="Create" personId="${person.id}"/>
 
-                        <div class="form-group">
-                            <label for="contactType" class="control-label req">Contact Type</label>
-                            <select name="contactType" id="contactType" class="form-control" required>
-                                <option value="">Select One</option>
-                                <option value="mobileNumber">Mobile Number</option>
-                                <option value="landLine">Landline</option>
-                                <option value="email">Email</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="contactInfo" class="control-label req">Contact Info</label>
-                            <input type="text" id="contactInfo" name="contactInfo" class="form-control" required>
-                        </div>
-
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" form="addContactForm">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
 </t:main>
