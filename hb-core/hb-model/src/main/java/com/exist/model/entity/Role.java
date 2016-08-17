@@ -17,7 +17,7 @@ public class Role extends BaseEntity {
 
     private static final long serialVersionUID = 1068681731270573784L;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(name = "PERSON_ROLE",
             joinColumns = @JoinColumn(name = "ROLE_ID"),
             inverseJoinColumns = @JoinColumn(name = "PERSON_ID"))

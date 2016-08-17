@@ -14,7 +14,7 @@ public class Contact extends BaseEntity {
 
     private static final long serialVersionUID = -1772785729825786403L;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "PERSON_ID")
     private Person person;
 

@@ -3,6 +3,7 @@ package com.exist.services.impl;
 import com.exist.dao.ContactDao;
 import com.exist.dao.PersonDao;
 import com.exist.dao.RoleDao;
+import com.exist.dto.ContactDto;
 import com.exist.dto.PersonDto;
 import com.exist.model.entity.Contact;
 import com.exist.model.entity.Person;
@@ -41,11 +42,20 @@ public class PersonServiceImpl extends BaseServiceImpl implements PersonService 
     @Override
     public List<PersonDto> findAll(String field, String orderStr) {
         ResultOrder order = orderStr.equals("asc") ? ResultOrder.ASC : ResultOrder.DESC;
-        List<Person> personList = personDao.findAll(field, order);
-        return personList
-                .stream()
-                .map(p -> mapper.map(p, PersonDto.class))
-                .collect(Collectors.toList());
+        if(field.equals("gwa")){
+            List<Person> personList = personDao.findAll();
+            return personList.stream()
+                    .sorted((p1, p2) -> p1.getGwa().compareTo(p2.getGwa()) * order.getMultiplier())
+                    .map(p -> mapper.map(p, PersonDto.class))
+                    .collect(Collectors.toList());
+
+        } else {
+            List<Person> personList = personDao.findAll(field, order);
+            return personList
+                    .stream()
+                    .map(p -> mapper.map(p, PersonDto.class))
+                    .collect(Collectors.toList());
+        }
     }
 
     @Override
@@ -90,6 +100,15 @@ public class PersonServiceImpl extends BaseServiceImpl implements PersonService 
         Contact contact = contactDao.findOne(contactId);
         if (person != null && contact != null){
             personDao.removeContact(personId, contactId);
+        }
+    }
+
+    @Override
+    public void addContact(Long personId, ContactDto contactDto) {
+        Person person = personDao.findOne(personId);
+        Contact contact = mapper.map(contactDto, Contact.class);
+        if(person != null){
+            personDao.addContact(personId, contact);
         }
     }
 }

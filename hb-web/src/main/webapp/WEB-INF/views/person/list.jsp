@@ -1,7 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
-<%@ taglib prefix="fmt-jsp" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <t:main title="Person">
     <c:if test="${param.error != null}">
@@ -50,8 +49,8 @@
                     <td>${person.name}</td>
                     <td>${person.address}</td>
                     <td>
-                        <fmt-jsp:formatDate value="${person.birthDate}" var="birthDate" type="date"/>
-                        ${person.birthDate}
+                        <fmt:formatDate value="${person.birthDate}" var="birthDate" pattern="yyyy-MM-dd"/>
+                        ${birthDate}
                     </td>
                     <td>${person.gwa}</td>
                     <td>${person.currentlyEmployed ? 'Yes' : 'No'}</td>

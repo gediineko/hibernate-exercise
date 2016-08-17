@@ -22,7 +22,7 @@
                             <c:if test="${readonly}">
                                 readonly="readonly"
                             </c:if>
-                            />
+                    />
                 </div>
 
                 <div class="form-group">
@@ -32,7 +32,7 @@
                             <c:if test="${readonly}">
                                 readonly="readonly"
                             </c:if>
-                            />
+                    />
                 </div>
 
                 <div class="form-group">
@@ -42,7 +42,7 @@
                             <c:if test="${readonly}">
                                 readonly="readonly"
                             </c:if>
-                            />
+                    />
                 </div>
 
                 <div class="form-group">
@@ -52,7 +52,7 @@
                             <c:if test="${readonly}">
                                 readonly="readonly"
                             </c:if>
-                            />
+                    />
                 </div>
 
                 <div class="form-group">
@@ -62,7 +62,7 @@
                             <c:if test="${readonly}">
                                 readonly="readonly"
                             </c:if>
-                            />
+                    />
                 </div>
 
 
@@ -74,7 +74,7 @@
                             <c:if test="${readonly}">
                                 readonly="readonly"
                             </c:if>
-                            />
+                    />
                 </div>
 
             </div>
@@ -91,7 +91,7 @@
                                 <c:if test="${readonly}">
                                     readonly="readonly"
                                 </c:if>
-                                />
+                        />
                     </div>
                     <div class="form-group col-md-6">
                         <label class="control-label" for="barangay">Barangay</label>
@@ -100,7 +100,7 @@
                                 <c:if test="${readonly}">
                                     readonly="readonly"
                                 </c:if>
-                                />
+                        />
                     </div>
                 </div>
 
@@ -112,7 +112,7 @@
                                 <c:if test="${readonly}">
                                     readonly="readonly"
                                 </c:if>
-                                />
+                        />
                     </div>
                     <div class="form-group col-md-6">
                         <label class="control-label" for="zipCode">Zip Code</label>
@@ -121,7 +121,7 @@
                                 <c:if test="${readonly}">
                                     readonly="readonly"
                                 </c:if>
-                                />
+                        />
                     </div>
                 </div>
 
@@ -134,7 +134,7 @@
                             <c:if test="${readonly}">
                                 readonly="readonly"
                             </c:if>
-                            />
+                    />
                 </div>
 
                 <div class="form-group">
@@ -150,7 +150,7 @@
                                         <c:if test="${readonly}">
                                             disabled="disabled"
                                         </c:if>
-                                        /> Yes
+                                /> Yes
                             </label>
                             <label class="col-md-3">
                                 <input type="radio" name="currentlyEmployed" id="currentlyEmployedNo" value="false"
@@ -160,7 +160,7 @@
                                         <c:if test="${readonly}">
                                             disabled="disabled"
                                         </c:if>
-                                        /> No
+                                /> No
                             </label>
                         </div>
                     </div>
@@ -175,7 +175,7 @@
                             <c:if test="${readonly}">
                                 readonly="readonly"
                             </c:if>
-                            />
+                    />
                 </div>
 
             </div>
@@ -226,7 +226,7 @@
                         <tbody>
                         <c:if test="${personContactList.isEmpty()}">
                             <tr>
-                                <td colspan="2" class="text-center">Person has no contacts</td>
+                                <td colspan="3" class="text-center">Person has no contacts</td>
                             </tr>
                         </c:if>
                         <c:forEach var="contact" items="${personContactList}">
@@ -234,7 +234,7 @@
                                 <td>${contact.contactType}</td>
                                 <td>${contact.contactInfo}</td>
                                 <td>
-                                    <form action="/person/removeContact" method="post" id="deleteForm${role.id}">
+                                    <form action="/person/removeContact" method="post" id="deleteForm${contact.id}">
                                         <input type="hidden" name="personId" value="${person.id}">
                                         <input type="hidden" name="contactId" value="${contact.id}">
                                         <button class="btn btn-link" type="submit"><i class="fa fa-times"></i></button>
@@ -334,6 +334,19 @@
                     <form class="form" action="/person/addContact" method="post" id="addContactForm">
                         <input type="hidden" name="personId" value='${person.id}'>
 
+                        <div class="form-group">
+                            <label for="contactType" class="control-label req">Contact Type</label>
+                            <select name="contactType" id="contactType" class="form-control" required>
+                                <option value="">Select One</option>
+                                <option value="mobileNumber">Mobile Number</option>
+                                <option value="landLine">Landline</option>
+                                <option value="email">Email</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactInfo" class="control-label req">Contact Info</label>
+                            <input type="text" id="contactInfo" name="contactInfo" class="form-control" required>
+                        </div>
 
                     </form>
                 </div>

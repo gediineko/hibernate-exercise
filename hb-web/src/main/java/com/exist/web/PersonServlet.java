@@ -107,6 +107,15 @@ public class PersonServlet extends HttpServlet {
                         redirectUrl = "/person/view/" + personId;
                     }
                     break;
+                case "addContact":
+                    if(StringUtils.isNotBlank(req.getParameter("personId")) && StringUtils.isNotBlank(req.getParameter("contactInfo")) &&StringUtils.isNotBlank(req.getParameter("contactType")) ){
+                        String contactInfo = req.getParameter("contactInfo");
+                        String contactType = req.getParameter("contactType");
+                        Long personId = Long.valueOf(req.getParameter("personId"));
+                        personService.addContact(personId, new ContactDtoBuilder().withContactInfo(contactInfo).withContactType(contactType).build());
+                    }
+
+                    break;
                 case "updateContact":
                     break;
                 case "removeContact":

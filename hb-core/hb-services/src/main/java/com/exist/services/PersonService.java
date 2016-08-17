@@ -1,6 +1,7 @@
 package com.exist.services;
 
 
+import com.exist.dto.ContactDto;
 import com.exist.dto.PersonDto;
 
 import java.util.List;
@@ -14,4 +15,6 @@ public interface PersonService {
     void addRole(Long personId, Long roleId);
     void removeRole(Long personId, Long roleId);
     void removeContact(Long personId, Long contactId);
+
+    void addContact(Long personId, ContactDto contactDto);
 }
