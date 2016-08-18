@@ -35,6 +35,7 @@ public class PersonServlet extends HttpServlet {
             String view = "/WEB-INF/views/person/list.jsp";
 
             PersonDto personDto;
+            List<PersonDto>  personList;
             switch (mode) {
                 case "create":
                     view = "/WEB-INF/views/person/form.jsp";
@@ -86,9 +87,25 @@ public class PersonServlet extends HttpServlet {
                     } else {
                         resp.sendRedirect("/person?error=Person with id " + id + " does not exist");
                     }
-                case "list":
+                    break;
+                case "listById":
+                    personList = personService.findAll("id", "asc");
+                    req.setAttribute("personList", personList);
+                    break;
+                case "listByGwa":
+                    personList = personService.findAll("gwa", "asc");
+                    req.setAttribute("personList", personList);
+                    break;
+                case "listByLastName":
+                    personList = personService.findAll("name.lastName", "asc");
+                    req.setAttribute("personList", personList);
+                    break;
+                case "listByDateHired":
+                    personList = personService.findAll("dateHired", "asc");
+                    req.setAttribute("personList", personList);
+                    break;
                 default:
-                    List<PersonDto> personList = personService.findAll("id", "asc");
+                    personList = personService.findAll("id", "asc");
                     req.setAttribute("personList", personList);
                     break;
             }

@@ -13,11 +13,11 @@
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" aria-labelledby="sortDropSown">
-                <li><a href="#">by GWA</a></li>
-                <li><a href="#">by Date Hired</a></li>
-                <li><a href="#">by Last Name</a></li>
+                <li><a href="/person/listByGwa">by GWA</a></li>
+                <li><a href="/person/listByDateHired">by Date Hired</a></li>
+                <li><a href="/person/listByLastName">by Last Name</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="#">by ID (default)</a></li>
+                <li><a href="/person/listById">by ID (default)</a></li>
             </ul>
         </div>
         <a href="/person/create" class="btn btn-primary col-md-6">New Person</a>
