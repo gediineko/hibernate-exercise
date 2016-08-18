@@ -54,7 +54,10 @@
                     </td>
                     <td>${person.gwa}</td>
                     <td>${person.currentlyEmployed ? 'Yes' : 'No'}</td>
-                    <td>${person.dateHired}</td>
+                    <td>
+                        <fmt:formatDate value="${person.dateHired}" var="dateHired" pattern="yyyy-MM-dd"/>
+                        ${dateHired}
+                    </td>
                     <td>
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle" type="button"
