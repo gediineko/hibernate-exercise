@@ -64,8 +64,9 @@
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu${person.id}">
-                                <li><a href="/person/view/${person.id}">View</a></li>
-                                <li><a href="/person/edit/${person.id}">Edit</a></li>
+                                <li><a href="/person/viewPerson/${person.id}">View Person</a></li>
+                                <li><a href="/person/edit/${person.id}">Edit Person Details</a></li>
+                                <li><a href="/person/editPersonContactRole/${person.id}">Edit Contacts & Roles</a></li>
                                 <li><a href="/person/view/${person.id}">Delete</a></li>
                             </ul>
                         </div>

@@ -169,7 +169,7 @@
                 <div class="form-group">
                     <label class="control-label" for="dateHired">Date Hired</label>
                     <fmt:formatDate value="${person.dateHired}" var="dateHired" pattern="yyyy-MM-dd"/>
-                    <input type="date" id="date2Hired" class="form-control" placeholder="yyyy-mm-dd" name="dateHired"
+                    <input type="date" id="dateHired" class="form-control" placeholder="yyyy-mm-dd" name="dateHired"
                            id="dateHired"
                            value="${dateHired}"
                             <c:if test="${readonly}">
@@ -199,8 +199,10 @@
             <div class="col-md-6">
 
                 <h3>Contacts
-                    <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#contactModal">Add
-                        Contact
+                    <button class="btn btn-primary pull-right <c:if test="${hidden}">hidden</c:if>" 
+                        data-toggle="modal" 
+                        data-target="#contactModal">
+                        Add Contact
                     </button>
                 </h3>
 
@@ -212,7 +214,11 @@
                         <tr>
                             <th>Type</th>
                             <th>Info</th>
-                            <th>Action</th>
+                            <th class="thActions 
+                                    <c:if test="${hidden}">
+                                    hidden
+                                    </c:if>"
+                            >Action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -225,9 +231,14 @@
                             <tr>
                                 <td>${contact.contactType}</td>
                                 <td>${contact.contactInfo}</td>
-                                <td>
-                                    <span class="dropdown pull-right">
-                                        <button class="btn btn-default dropdown-toggle" type="button"
+                                
+                                <td class="tdActions 
+                                    <c:if test="${hidden}">
+                                    hidden
+                                    </c:if>"
+                                >
+                                    <span class="dropdown">
+                                        <button class="btn btn-default btn-block dropdown-toggle" type="button"
                                                 id="dropdownMenuContact${contact.id}"
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                             Actions
@@ -260,7 +271,10 @@
             <!-- Person Role -->
             <div class="col-md-6">
                 <h3>Roles
-                    <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#roleModal">Add Role
+                    <button class="btn btn-primary pull-right <c:if test="${hidden}">hidden</c:if>" 
+                        data-toggle="modal" 
+                        data-target="#roleModal">
+                        Add Role
                     </button>
                 </h3>
                 <br>
@@ -269,8 +283,12 @@
                     <table class="table-condensed table table-bordered">
                         <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Action</th>
+                            <th>Role Title</th>
+                            <th class="thActions 
+                                    <c:if test="${hidden}">
+                                    hidden
+                                    </c:if>"
+                            >Action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -282,7 +300,11 @@
                         <c:forEach var="role" items="${personRoleList}">
                             <tr>
                                 <td>${role.name}</td>
-                                <td>
+                                <td class="tdActions 
+                                    <c:if test="${hidden}">
+                                    hidden
+                                    </c:if>"
+                                >
                                     <span class="dropdown pull-right">
                                     <button class="btn btn-default dropdown-toggle" type="button"
                                             id="dropdownMenuRole${role.id}"

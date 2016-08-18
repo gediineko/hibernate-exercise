@@ -48,7 +48,7 @@ public class PersonServlet extends HttpServlet {
                         resp.sendRedirect("/person?error=Person with id " + id + " does not exist");
                     }
                     break;
-                case "view":
+                case "editPersonContactRole":
                     personDto = personService.findOne(id);
                     if (personDto != null) {
                         Set<RoleDto> personRoleList = roleService.findAllByPerson(personDto.getId());
@@ -67,6 +67,25 @@ public class PersonServlet extends HttpServlet {
                         resp.sendRedirect("/person?error=Person with id " + id + " does not exist");
                     }
                     break;
+                case "viewPerson":
+                    personDto = personService.findOne(id);
+                    if (personDto != null) {
+                        Set<RoleDto> personRoleList = roleService.findAllByPerson(personDto.getId());
+                        Set<RoleDto> roleList = roleService.findAllNotIn(personRoleList.stream().map(RoleDto::getId).collect(Collectors.toList()));
+                        List<ContactDto> personContactList = contactService.findAllByPerson(personDto.getId());
+
+                        req.setAttribute("person", personDto);
+                        req.setAttribute("personRoleList", personRoleList);
+                        req.setAttribute("readonly", true);
+                        req.setAttribute("hidden", true);
+                        req.setAttribute("roleList", roleList);
+
+                        req.setAttribute("personContactList", personContactList);
+
+                        view = "/WEB-INF/views/person/form.jsp";
+                    } else {
+                        resp.sendRedirect("/person?error=Person with id " + id + " does not exist");
+                    }
                 case "list":
                 default:
                     List<PersonDto> personList = personService.findAll("id", "asc");
@@ -91,6 +110,9 @@ public class PersonServlet extends HttpServlet {
                     PersonDto person = buildPerson(req);
                     personService.add(person);
                     break;
+                case "deletePerson":
+
+                    break;
                 case "addRole":
                     if (StringUtils.isNotBlank(req.getParameter("personId")) && StringUtils.isNotBlank(req.getParameter("role"))) {
                         Long personId = Long.valueOf(req.getParameter("personId"));
@@ -113,6 +135,7 @@ public class PersonServlet extends HttpServlet {
                         String contactType = req.getParameter("contactType");
                         Long personId = Long.valueOf(req.getParameter("personId"));
                         personService.addContact(personId, new ContactDtoBuilder().withContactInfo(contactInfo).withContactType(contactType).build());
+                        redirectUrl = "/person/view/" + personId;
                     }
 
                     break;

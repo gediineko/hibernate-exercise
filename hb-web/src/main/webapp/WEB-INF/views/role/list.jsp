@@ -3,7 +3,7 @@
 
 <t:main title="Role">
     <div class="row pull-right">
-        <a href="/role/add" class="btn btn-primary">New Role</a>
+        <a href="/role/addRole" class="btn btn-primary">New Role</a>
     </div>
 
     <table class="table">
