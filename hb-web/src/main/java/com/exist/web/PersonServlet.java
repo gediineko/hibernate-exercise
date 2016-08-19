@@ -185,6 +185,7 @@ public class PersonServlet extends HttpServlet {
                         Long personId = Long.valueOf(req.getParameter("personId"));
                         personService.delete(personId);
                         redirectUrl = "/person/";
+
                     }
                     break;
 

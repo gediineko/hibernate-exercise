@@ -74,7 +74,13 @@
                                 <li><a href="/person/edit/${person.id}">Edit Person Details</a></li>
                                 <li><a href="/person/editPersonContactRole/${person.id}">Edit Contacts & Roles</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="/person/removePerson/${person.id}">Delete</a></li>
+                                <li>
+                                    <form action="/person/removePerson" method="post"
+                                          id="deleteForm${role.id}">
+                                        <input type="hidden" name="personId" value="${person.id}">
+                                        <button class="btn btn-link" type="submit">Delete</button>
+                                    </form>
+                                </li>
                             </ul>
                         </div>
                     </td>

@@ -60,6 +60,7 @@ public class PersonServiceImpl extends BaseServiceImpl implements PersonService 
 
     @Override
     public void delete(Long id) {
+        System.out.println("Test");
         personDao.delete(id);
     }
 

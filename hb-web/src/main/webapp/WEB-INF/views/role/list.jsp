@@ -33,13 +33,20 @@
                         <td>
                             <div class="dropdown pull-right">
                                 <button class="btn btn-default dropdown-toggle" type="button"
-                                            id="dropdownMenu${role.id}"                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                            id="dropdownMenu${role.id}"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                     Actions
                                     <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu${role.id}">
-                                    <li><a href="#">Update</a></li>
-                                    <li><a href="#">Delete</a></li>
+                                    <li><button class="btn btn-link">Update</button></li>
+                                    <li>
+                                        <form action="/role/removeRole" method="post"
+                                              id="deleteForm${role.id}">
+                                            <input type="hidden" name="roleId" value="${role.id}">
+                                            <button class="btn btn-link" type="submit">Delete</button>
+                                        </form>
+                                    </li>
                                 </ul>
                             </div>
                         </td>
@@ -52,16 +59,16 @@
     <!-- Role Modal -->
     <div id="addRoleModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
-
-    <!-- Modal content-->
+        <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Add Role</h4>
                 </div>
                 <div class="modal-body">
-                    <form class="role" id="addRoleForm">
-
+                    <form class="form" id="addRoleForm">
+                        <label for="addNewRole">Type in name of new Role:</label>
+                        <input id="addNewRole" type="text" class="form-control" placeholder="Role Name">
                     </form>
                 </div>
                 <div class="modal-footer">

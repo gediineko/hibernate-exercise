@@ -88,13 +88,16 @@ public class BaseDaoImpl<E extends BaseEntity, ID extends Serializable> implemen
         }
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void delete(ID id) {
         Transaction transaction = null;
         try (ClosableSession session = getClosableSession()) {
             transaction = session.getSession().beginTransaction();
 
-            session.getSession().delete(id);
+            E entity = (E) session.getSession().get(clazz, id);
+            System.out.println("HUHUHUHUUUU");
+            session.getSession().delete(entity);
 
             transaction.commit();
         } catch (Exception e) {
