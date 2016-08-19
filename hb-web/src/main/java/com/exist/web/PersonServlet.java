@@ -59,6 +59,7 @@ public class PersonServlet extends HttpServlet {
                         req.setAttribute("person", personDto);
                         req.setAttribute("personRoleList", personRoleList);
                         req.setAttribute("readonly", true);
+                        req.setAttribute("showPersonLabel", true);
                         req.setAttribute("roleList", roleList);
 
                         req.setAttribute("personContactList", personContactList);

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Set;
 
-@WebServlet("/role")
+@WebServlet("/role/*")
 public class RoleServlet extends HttpServlet {
     RoleService roleService;
 
@@ -22,8 +22,14 @@ public class RoleServlet extends HttpServlet {
     }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Set<RoleDto> roleList = roleService.findAll();
-        req.setAttribute("roleList", roleList);
-        req.getRequestDispatcher("/WEB-INF/views/role/list.jsp").forward(req, resp);
+        // Set<RoleDto> roleList = roleService.findAll();
+        // req.setAttribute("roleList", roleList);
+        // req.getRequestDispatcher("/WEB-INF/views/role/list.jsp").forward(req, resp);
+
+        try {
+
+        } catch (Exception e){
+            resp.sendRedirect("/role");
+        }
     }
 }
