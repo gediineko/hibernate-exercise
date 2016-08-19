@@ -19,7 +19,6 @@ public class ContactDaoImpl extends BaseDaoImpl<Contact, Long> implements Contac
     public List<Contact> findAllByPerson(Long personId) {
         try (ClosableSession session = getClosableSession()) {
             Criteria criteria = session.getSession().createCriteria(clazz)
-                    .setCacheable(true)
                     .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
                     .createAlias("person", "p")
                     .add(Restrictions.eq("p.id", personId));

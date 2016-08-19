@@ -1,8 +1,6 @@
 package com.exist.model.entity;
 
 import com.exist.model.base.BaseEntity;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 

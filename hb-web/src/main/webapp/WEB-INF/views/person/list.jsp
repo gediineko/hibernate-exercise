@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <t:main title="Person">
+    <h1 class="text-center">Person Details List</h1>
     <c:if test="${param.error != null}">
         <div class="alert alert-danger" role="alert"><strong>Oh snap! </strong>${param.error}</div>
     </c:if>
@@ -22,6 +23,7 @@
         </div>
         <a href="/person/create" class="btn btn-primary col-md-6">New Person</a>
     </div>
+    <br>
     <br>
     <div class="row">
 

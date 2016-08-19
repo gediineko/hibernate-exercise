@@ -57,7 +57,6 @@ public class BaseDaoImpl<E extends BaseEntity, ID extends Serializable> implemen
     public List<E> findAll(String field, ResultOrder order) {
         try (ClosableSession session = getClosableSession()) {
             Criteria criteria = session.getSession().createCriteria(clazz)
-                    .setCacheable(true)
                     .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
             if (order == ResultOrder.ASC) {
                 criteria.addOrder(Order.asc(field));
