@@ -8,8 +8,6 @@ import javax.persistence.*;
 
 
 @Entity
-@Cacheable
-@Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 public class Contact extends BaseEntity {
 
     private static final long serialVersionUID = -1772785729825786403L;

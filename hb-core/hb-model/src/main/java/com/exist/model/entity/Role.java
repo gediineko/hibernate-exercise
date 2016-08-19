@@ -11,8 +11,6 @@ import java.util.List;
 
 
 @Entity
-@Cacheable
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Role extends BaseEntity {
 
     private static final long serialVersionUID = 1068681731270573784L;

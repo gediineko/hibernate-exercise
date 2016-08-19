@@ -10,8 +10,6 @@ import java.util.*;
 
 
 @Entity
-@Cacheable
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Person extends BaseEntity {
 
     private static final long serialVersionUID = -3138466364444175632L;
