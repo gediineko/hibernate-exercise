@@ -70,8 +70,10 @@
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu${person.id}">
                                 <li><a href="/person/viewPerson/${person.id}">View Person</a></li>
+                                <li role="separator" class="divider"></li>
                                 <li><a href="/person/edit/${person.id}">Edit Person Details</a></li>
                                 <li><a href="/person/editPersonContactRole/${person.id}">Edit Contacts & Roles</a></li>
+                                <li role="separator" class="divider"></li>
                                 <li><a href="/person/removePerson/${person.id}">Delete</a></li>
                             </ul>
                         </div>
