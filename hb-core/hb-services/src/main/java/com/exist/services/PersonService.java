@@ -15,6 +15,6 @@ public interface PersonService {
     void addRole(Long personId, Long roleId);
     void removeRole(Long personId, Long roleId);
     void removeContact(Long personId, Long contactId);
-
     void addContact(Long personId, ContactDto contactDto);
+    void updateContact(Long personId, Long contactId, ContactDto contactDto);
 }

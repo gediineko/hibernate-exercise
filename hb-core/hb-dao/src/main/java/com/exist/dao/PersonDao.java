@@ -13,4 +13,6 @@ public interface PersonDao extends BaseDao<Person, Long> {
     void removeContact(Long personId, Long contactId);
 
     void addContact(Long personId, Contact contact);
+
+    void updateContact(Long personId, Long contactId, Contact contact);
 }

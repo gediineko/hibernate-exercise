@@ -111,4 +111,13 @@ public class PersonServiceImpl extends BaseServiceImpl implements PersonService 
             personDao.addContact(personId, contact);
         }
     }
+
+    @Override
+    public void updateContact(Long personId, Long contactId, ContactDto contactDto){
+        Person person = personDao.findOne(personId);
+        Contact contact = mapper.map(contactDto, Contact.class);
+        if (person != null){
+            personDao.updateContact(personId, contactId, contact);
+        }
+    }
 }

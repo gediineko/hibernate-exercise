@@ -127,45 +127,77 @@ public class PersonServlet extends HttpServlet {
                     PersonDto person = buildPerson(req);
                     personService.add(person);
                     break;
-                case "deletePerson":
 
-                    break;
                 case "addRole":
-                    if (StringUtils.isNotBlank(req.getParameter("personId")) && StringUtils.isNotBlank(req.getParameter("role"))) {
+                    if (StringUtils.isNotBlank(req.getParameter("personId")) 
+                        && StringUtils.isNotBlank(req.getParameter("role"))) {
+
                         Long personId = Long.valueOf(req.getParameter("personId"));
                         Long roleId = Long.valueOf(req.getParameter("role"));
                         personService.addRole(personId, roleId);
-                        redirectUrl = "/person/view/" + personId;
+                        redirectUrl = "/person/editPersonContactRole/" + personId;
                     }
                     break;
+
                 case "removeRole":
-                    if (StringUtils.isNotBlank(req.getParameter("personId")) && StringUtils.isNotBlank(req.getParameter("roleId"))) {
+                    if (StringUtils.isNotBlank(req.getParameter("personId")) 
+                        && StringUtils.isNotBlank(req.getParameter("roleId"))) {
+
                         Long personId = Long.valueOf(req.getParameter("personId"));
                         Long roleId = Long.valueOf(req.getParameter("roleId"));
                         personService.removeRole(personId, roleId);
-                        redirectUrl = "/person/view/" + personId;
+                        redirectUrl = "/person/editPersonContactRole/" + personId;
                     }
                     break;
+
                 case "addContact":
-                    if(StringUtils.isNotBlank(req.getParameter("personId")) && StringUtils.isNotBlank(req.getParameter("contactInfo")) &&StringUtils.isNotBlank(req.getParameter("contactType")) ){
+                    if(StringUtils.isNotBlank(req.getParameter("personId")) 
+                        && StringUtils.isNotBlank(req.getParameter("contactInfo")) 
+                        && StringUtils.isNotBlank(req.getParameter("contactType")) ){
+
                         String contactInfo = req.getParameter("contactInfo");
                         String contactType = req.getParameter("contactType");
                         Long personId = Long.valueOf(req.getParameter("personId"));
                         personService.addContact(personId, new ContactDtoBuilder().withContactInfo(contactInfo).withContactType(contactType).build());
-                        redirectUrl = "/person/view/" + personId;
+                        redirectUrl = "/person/editPersonContactRole/" + personId;
                     }
 
                     break;
+
                 case "updateContact":
+                    if (StringUtils.isNotBlank(req.getParameter("personId")) 
+                        && StringUtils.isNotBlank(req.getParameter("contactId")) 
+                        && StringUtils.isNotBlank(req.getParameter("contactType"))
+                        && StringUtils.isNotBlank(req.getParameter("contactInfo"))) {
+                        
+                        String contactInfo = req.getParameter("contactInfo");
+                        String contactType = req.getParameter("contactType");
+                        Long personId = Long.valueOf(req.getParameter("personId"));
+                        Long contactId = Long.valueOf(req.getParameter("contactId"));
+                        personService.updateContact(personId, contactId, new ContactDtoBuilder().withContactInfo(contactInfo).withContactType(contactType).build());
+                        redirectUrl = "/person/editPersonContactRole/" + personId;
+                    }
                     break;
+
+                case "removePerson":
+                    if (StringUtils.isNotBlank(req.getParameter("personId"))){
+                        Long personId = Long.valueOf(req.getParameter("personId"));
+                        personService.delete(personId);
+                        redirectUrl = "/person/";
+                    }
+                    break;
+
                 case "removeContact":
-                    if (StringUtils.isNotBlank(req.getParameter("personId")) && StringUtils.isNotBlank(req.getParameter("contactId"))){
+                    if (StringUtils.isNotBlank(req.getParameter("personId")) 
+                        && StringUtils.isNotBlank(req.getParameter("contactId"))){
+                        
                         Long personId = Long.valueOf(req.getParameter("personId"));
                         Long contactId = Long.valueOf(req.getParameter("contactId"));
                         personService.removeContact(personId, contactId);
-                        redirectUrl = "/person/view/" + personId;
+                        redirectUrl = "/person/editPersonContactRole/" + personId;
                     }
                     break;
+
                 default:
                     break;
             }
