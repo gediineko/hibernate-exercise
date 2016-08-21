@@ -8,7 +8,7 @@
         <br>
         <div class="row pull-right">
             <a href="#" class="btn btn-primary" data-toggle="modal" 
-                data-target="#addRoleModal">New Role</a>
+                data-target="#roleModal">New Role</a>
         </div>
         <br>
         <br>
@@ -39,7 +39,8 @@
                                     <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu${role.id}">
-                                    <li><button class="btn btn-link">Update</button></li>
+                                    <li><button href="#" data-toggle="modal"
+                                                data-target="#roleModal${role.id}" class="btn btn-link">Update</button></li>
                                     <li>
                                         <form action="/role/removeRole" method="post"
                                               id="deleteForm${role.id}">
@@ -57,26 +58,6 @@
     </div>
 
     <!-- Role Modal -->
-    <div id="addRoleModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-        <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Add Role</h4>
-                </div>
-                <div class="modal-body">
-                    <form class="form" id="addRoleForm">
-                        <label for="addNewRole">Type in name of new Role:</label>
-                        <input id="addNewRole" type="text" class="form-control" placeholder="Role Name">
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" form="addRoleForm">Save changes</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
+    
+    <t:roleModal mode="Create"/>
 </t:main>

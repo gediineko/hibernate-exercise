@@ -1,4 +1,4 @@
-INSERT INTO public.person VALUES (default, 'Ugong', 'Valenzuela', '#2232', '1441', '1/5/1995', true, '7/4/2016', 1.0, 'Geraldine', 'Golong', 'Arma', '', 'Ms.');
+INSERT INTO public.person VALUES (default, 'Springfield', 'River Valley', '#438', '80971', '5/7/1995', true, '7/4/2016', 1.0, 'Arthur', 'Dayne', 'Thomas', 'III', 'Mr.');
 
 INSERT INTO public.role VALUES (default, 'Developer');
 
