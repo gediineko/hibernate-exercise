@@ -71,4 +71,5 @@ public class RoleServiceImpl extends BaseServiceImpl implements RoleService{
                 .map(r -> mapper.map(r, RoleDto.class))
                 .collect(Collectors.toSet());
     }
+
 }

@@ -52,6 +52,7 @@
                             </div>
                         </td>
                     </tr>
+                    <t:roleModal mode="Edit" roleId="${role.id}" roleName="${role.name}"/>
                 </c:forEach>
             </table>
         </div>

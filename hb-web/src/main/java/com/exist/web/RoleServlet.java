@@ -67,15 +67,6 @@ public class RoleServlet extends HttpServlet {
             switch (mode) {
                 case "addRole":
                     roleName = req.getParameter("roleName");
-                    // Long roleId = StringUtils.isNotBlank(req.getParameter("roleId"))
-                    //     ? Long.valueOf(req.getParameter("roleId"))
-                    //     : null;
-
-                        // RoleDto roleDto = new RoleDtoBuilder()
-                        //     .withId(roleId)
-                        //     .withName(roleName)
-                        //     .build();
-
                     RoleDto roleDto = new RoleDto(roleName);
                     roleService.add(roleDto);
                     break;
