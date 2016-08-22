@@ -1,6 +1,7 @@
 package com.exist.web;
 
 import com.exist.dto.RoleDto;
+import com.exist.dto.RoleDtoBuilder;
 import com.exist.services.PersonService;
 import com.exist.services.RoleService;
 import com.exist.util.ServiceFactory;
@@ -75,7 +76,9 @@ public class RoleServlet extends HttpServlet {
                         && StringUtils.isNotBlank(req.getParameter("roleName"))) {
                         roleName = req.getParameter("roleName");
                         Long roleId = Long.valueOf(req.getParameter("roleId"));
-                        roleService.update(new RoleDto(roleName));
+
+                        roleService.update(new RoleDtoBuilder().withId(roleId).withName(roleName).build());
+
                         redirectUrl = "/role";
                     }
 
