@@ -22,9 +22,7 @@ public class RoleServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // Set<RoleDto> roleList = roleService.findAll();
-        // req.setAttribute("roleList", roleList);
-        // req.getRequestDispatcher("/WEB-INF/views/role/list.jsp").forward(req, resp);
+        
         RoleDto roleDto;
         Set<RoleDto> roleList;
         try {
